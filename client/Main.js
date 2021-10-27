@@ -1,7 +1,10 @@
 import React from "react";
+import { BigStaff } from "./components/index";
 
-export default class Main extends React.Component {
-  render() {
-    return <div>Hello, World!</div>;
-  }
-}
+const Main = () => (
+  <div>
+    <BigStaff />
+  </div>
+);
+
+export default Main;

@@ -1,0 +1,36 @@
+.staff-box {
+  background-color: pink;
+}
+
+.big-staff {
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+}
+
+.staff {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+
+.gap {
+  width: 25%;
+}
+
+.staff-line-unit {
+  background-color: black;
+  height: 3px;
+}
+
+.staff-line:hover {
+  background-color: red;
+}
+
+.staff-space-unit {
+  height: 2px;
+}
+
+.staff-space:hover {
+  background-color: red;
+}
