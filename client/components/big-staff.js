@@ -1,5 +1,6 @@
 import React from "react";
 import { Staff, Gap } from "./staff";
+import { toggleNote } from "../store";
 
 const BigStaff = () => (
   <div className={"staff-box"}>
@@ -7,9 +8,9 @@ const BigStaff = () => (
       <Gap />
       <Gap />
       <Gap />
-      <Staff />
+      <Staff clef={"treble"} />
       <Gap />
-      <Staff />
+      <Staff clef={"bass"} />
       <Gap />
       <Gap />
       <Gap />
