@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { toggleNote } from "../store";
+// import { toggleNote } from "../store";
+
+import { Treble, Bass } from "./icons";
 
 // const treblePitchRefs = ["E4", "F4", "G4", "A4", "B4", "C5", "D5", "E5", "F5"];
 // const bassPitchRefs = ["G2", "A2", "B2", "C3", "D3", "E3", "F3", "G3", "A3"];
@@ -34,11 +36,7 @@ const StaffSpace = () => {
 const Clef = (props) => {
   return (
     <div className={"clef"}>
-      {props.clef.toLowerCase() === "bass" ? (
-        <div>BASS</div>
-      ) : (
-        <div>TREBLE</div>
-      )}
+      {props.clef.toLowerCase() === "bass" ? <Bass /> : <Treble />}
     </div>
   );
 };
