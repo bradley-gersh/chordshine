@@ -1,6 +1,5 @@
 import React from "react";
 import { Staff, Gap } from "./staff";
-import { toggleNote } from "../store";
 
 const BigStaff = () => (
   <div className={"staff-box"}>

@@ -1,6 +1,8 @@
 import { createStore, applyMiddleware } from "redux";
 import loggerMiddleware from "redux-logger";
 
+import Note from "./note.js";
+
 // -- INITIAL STATE --
 const initialState = {
   midiNotes: [],
@@ -10,10 +12,10 @@ const initialState = {
 const TOGGLE_NOTE = "TOGGLE_NOTE";
 
 // -- ACTION CREATORS --
-export const toggleNote = (midiNote) => {
+export const toggleNote = (newNote) => {
   return {
     type: TOGGLE_NOTE,
-    midiNote,
+    midiNote: Note(...newNote),
   };
 };
 
