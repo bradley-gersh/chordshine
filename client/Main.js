@@ -1,9 +1,10 @@
 import React from "react";
-import { BigStaff } from "./components/index";
+import { BigStaff, Toolbar } from "./components/index";
 
 const Main = () => (
   <div>
     <BigStaff />
+    <Toolbar />
   </div>
 );
 
