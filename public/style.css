@@ -16,6 +16,7 @@
 
 .clef {
   position: absolute;
+  width: 2rem;
 }
 
 .gap {

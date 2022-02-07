@@ -17,7 +17,12 @@ const Notehead = () => (
 );
 
 const Treble = () => (
-  <svg width="100%" height="100%" transform="translate(10, -15)">
+  <svg
+    width={"100%"}
+    height={"100%"}
+    transform={"translate(10, -15)"}
+    vectorEffect={"non-scaling-stroke"}
+  >
     <path
       d="M 376,415
          l 25,-145
@@ -79,13 +84,18 @@ const Treble = () => (
          c 0 88 -67 156 -148 163
          c -12 1 -13 -2 -11 -14
          z"
-      transform="matrix(1 0 0 -1 0 58) scale(0.045)"
+      transform={"matrix(1 0 0 -1 0 58) scale(0.045)"}
     />
   </svg>
 );
 
 const Bass = () => (
-  <svg width="100%" height="100%" transform="translate(15, -5)">
+  <svg
+    width={"100%"}
+    height={"100%"}
+    transform={"translate(15, -5)"}
+    vectorEffect={"non-scaling-stroke"}
+  >
     <path
       d="M 252 262
          c 173 0 279 -116 279 -290
