@@ -1,20 +1,26 @@
 import React from "react";
 import { Staff, Gap } from "./staff";
+import { Toolbar } from "./toolbar";
 
 const BigStaff = () => (
-  <div className={"staff-box"}>
-    <div className={"big-staff"}>
-      <Gap />
-      <Gap />
-      <Gap />
-      <Staff clef={"treble"} />
-      <Gap />
-      <Staff clef={"bass"} />
-      <Gap />
-      <Gap />
-      <Gap />
-    </div>
+  <div className={"big-staff"}>
+    <Gap />
+    <Gap />
+    <Gap />
+    <Staff clef={"treble"} />
+    <Gap />
+    <Staff clef={"bass"} />
+    <Gap />
+    <Gap />
+    <Gap />
   </div>
 );
 
-export default BigStaff;
+const StaffBox = () => (
+  <div className={"staff-box"}>
+    <BigStaff />
+    <Toolbar />
+  </div>
+);
+
+export { StaffBox, BigStaff };

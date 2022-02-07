@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Sharp, Natural, Flat } from "./icons";
 
 const Toolbar = () => (
-  <div>
+  <div className={"toolbar"}>
     <RoundButton icon={"sharp"} />
     <RoundButton icon={"natural"} />
     <RoundButton icon={"flat"} />
@@ -12,7 +12,7 @@ const Toolbar = () => (
 );
 
 const RoundButton = ({ icon }) => (
-  <button style={{ borderRadius: "10px" }}>
+  <button className={"accidental-button"}>
     {icon === "sharp" ? <Sharp /> : icon === "natural" ? <Natural /> : <Flat />}
   </button>
 );
@@ -21,4 +21,4 @@ RoundButton.propTypes = {
   icon: PropTypes.string,
 };
 
-export default Toolbar;
+export { Toolbar };

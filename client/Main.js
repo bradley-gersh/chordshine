@@ -1,10 +1,9 @@
 import React from "react";
-import { BigStaff, Toolbar } from "./components/index";
+import { StaffBox } from "./components/index";
 
 const Main = () => (
-  <div>
-    <BigStaff />
-    <Toolbar />
+  <div className={"main"}>
+    <StaffBox />
   </div>
 );
 
