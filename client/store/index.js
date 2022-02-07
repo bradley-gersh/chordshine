@@ -3,39 +3,34 @@ import loggerMiddleware from "redux-logger";
 
 import Note from "./note.js";
 
-// -- INITIAL STATE --
 const initialState = {
-  midiNotes: [],
+  notes: [],
 };
 
-// -- ACTION TYPES --
 const TOGGLE_NOTE = "TOGGLE_NOTE";
 
-// -- ACTION CREATORS --
 export const toggleNote = (newNote) => {
   return {
     type: TOGGLE_NOTE,
-    midiNote: Note(...newNote),
+    note: Note(...newNote),
   };
 };
 
-// -- REDUCER --
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case TOGGLE_NOTE: {
-      const loc = state.midiNotes.indexOf(action.midiNote);
-      const newMidiNotes =
+      const loc = state.notes.indexOf(action.note);
+      const newNotes =
         loc > -1
-          ? state.midiNotes.slice(0, loc).concat(state.midiNotes.slice(loc + 1))
-          : [...state.midiNotes, action.midiNote];
-      return { ...state, midiNotes: newMidiNotes };
+          ? state.notes.slice(0, loc).concat(state.notes.slice(loc + 1))
+          : [...state.notes, action.note];
+      return { ...state, notes: newNotes };
     }
     default:
       return state;
   }
 };
 
-// -- STORE --
 const store = createStore(reducer, applyMiddleware(loggerMiddleware));
 
 export default store;

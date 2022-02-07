@@ -1,3 +1,7 @@
+import React from "react";
+
+const Note = () => <div className={"note"}></div>;
+
 export default class Note {
   constructor(noteName) {
     this.id = noteName;
@@ -31,3 +35,5 @@ function toMidi(pc, octave, accidental) {
   }
   return (octave + 1) * 12 + pcNum(pc) + accidental;
 }
+
+export { Note };

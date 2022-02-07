@@ -1,29 +1,36 @@
-import React from "react";
-import { Staff, Gap } from "./staff";
-import { Toolbar } from "./toolbar";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { TrebleStaff, BassStaff, Gap, NoteColumn, Toolbar } from "./index";
 
-const NoteColumn = () => <div className={"note-column"}></div>;
-
-const BigStaff = () => (
+const BigStaff = ({ notes, setNotes }) => (
   <div className={"big-staff"}>
     <NoteColumn />
-    <Gap />
-    <Gap />
-    <Gap />
-    <Staff clef={"treble"} />
-    <Gap />
-    <Staff clef={"bass"} />
-    <Gap />
-    <Gap />
-    <Gap />
+    <Gap notes={notes} setNotes={setNotes} />
+    <Gap notes={notes} setNotes={setNotes} />
+    <Gap notes={notes} setNotes={setNotes} />
+    <TrebleStaff clef={"treble"} notes={notes} setNotes={setNotes} />
+    <Gap notes={notes} setNotes={setNotes} />
+    <BassStaff clef={"bass"} notes={notes} setNotes={setNotes} />
+    <Gap notes={notes} setNotes={setNotes} />
+    <Gap notes={notes} setNotes={setNotes} />
+    <Gap notes={notes} setNotes={setNotes} />
   </div>
 );
 
-const StaffBox = () => (
-  <div className={"staff-box"}>
-    <BigStaff />
-    <Toolbar />
-  </div>
-);
+BigStaff.propTypes = {
+  notes: PropTypes.array.isRequired,
+  setNotes: PropTypes.func.isRequired,
+};
+
+const StaffBox = () => {
+  const [notes, setNotes] = useState([]);
+
+  return (
+    <div className={"staff-box"}>
+      <BigStaff notes={notes} setNotes={setNotes} />
+      <Toolbar />
+    </div>
+  );
+};
 
 export { StaffBox, BigStaff };
