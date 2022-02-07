@@ -6,12 +6,13 @@
 .big-staff {
   display: flex;
   flex-direction: column;
+  width: 25%;
+  cursor: url("notehead.png") 8 8, auto;
 }
 
 .staff {
   display: flex;
   flex-direction: column;
-  width: 25%;
 }
 
 .clef {
