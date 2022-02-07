@@ -1,9 +1,9 @@
 .staff-box {
-  background-color: pink;
+  border-color: black;
+  border-width: 1rem;
 }
 
 .big-staff {
-  background-color: aqua;
   display: flex;
   flex-direction: column;
 }
