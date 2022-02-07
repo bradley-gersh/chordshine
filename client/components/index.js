@@ -1,3 +1,3 @@
-export { StaffBox, BigStaff } from "./big-staff";
-export { Staff } from "./staff";
-export { Toolbar } from "./toolbar";
+export { StaffBox, BigStaff } from "./BigStaff";
+export { Staff } from "./Staff";
+export { Toolbar } from "./Toolbar";
