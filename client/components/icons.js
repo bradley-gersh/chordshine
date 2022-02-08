@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 // Glyphs based on the Bravura music font by Daniel Spreadbury
 
@@ -130,8 +131,8 @@ const Bass = () => (
   </svg>
 );
 
-const Flat = () => (
-  <svg height="40" width="20">
+const Flat = ({ className }) => (
+  <svg className={className} height="40" width="20">
     <path
       d="M 12,-170
          c -8,10 -12,581 -12,581
@@ -162,8 +163,8 @@ const Flat = () => (
   </svg>
 );
 
-const Natural = () => (
-  <svg height="40" width="20">
+const Natural = ({ className }) => (
+  <svg className={className} height="40" width="20">
     <path
       d="M 141 181l15 5c1 1 3 1 4 1c4 0 8 -3 8 -8v-502c0 -7 -6 -12 -12 -12h-13c-7 0 -12 5 -12 12v149c0 8 -7 11 -17 11c-29 0 -85 -24 -99 -30c-1 -1 -3 -1 -4 -1l-2 -1c-6 0 -9 3 -9 9v515c0 7 5 12 12 12h13c6 0 12 -5 12 -12v-167c0 -4 4 -5 10 -5c26 0 90 23 90 23
       c1 0 2 1 4 1zM37 39v-103c0 -4 5 -6 12 -6c25 0 82 23 82 41v103c0 4 -3 5 -9 5c-24 0 -85 -26 -85 -40z"
@@ -172,8 +173,8 @@ const Natural = () => (
   </svg>
 );
 
-const Sharp = () => (
-  <svg height="40" width="20">
+const Sharp = ({ className }) => (
+  <svg className={className} height="40" width="20">
     <path
       d="M 237,118
          l -26,-10
@@ -251,5 +252,17 @@ const Sharp = () => (
     />
   </svg>
 );
+
+Sharp.propTypes = {
+  className: PropTypes.string,
+};
+
+Natural.propTypes = {
+  className: PropTypes.string,
+};
+
+Flat.propTypes = {
+  className: PropTypes.string,
+};
 
 export { Notehead, Treble, Bass, Flat, Sharp, Natural };

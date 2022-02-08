@@ -13,7 +13,13 @@ const Toolbar = () => (
 
 const RoundButton = ({ icon }) => (
   <button className={"accidental-button"}>
-    {icon === "sharp" ? <Sharp /> : icon === "natural" ? <Natural /> : <Flat />}
+    {icon === "sharp" ? (
+      <Sharp className={"accidental-on-button"} />
+    ) : icon === "natural" ? (
+      <Natural className={"accidental-on-button"} />
+    ) : (
+      <Flat className={"accidental-on-button"} />
+    )}
   </button>
 );
 
