@@ -1,6 +1,5 @@
 export default class Note {
   constructor(noteName) {
-    this.id = noteName;
     this.pc = noteName[0];
     this.accidental = noteName[1];
     this.octave = noteName.slice(2);

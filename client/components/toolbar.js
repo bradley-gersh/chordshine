@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Sharp, Natural, Flat } from "./Icons";
+import { Sharp, Natural, Flat } from "./icons";
 
 const Toolbar = () => (
   <div className={"toolbar"}>
