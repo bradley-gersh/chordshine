@@ -1,9 +1,9 @@
 import React from "react";
-import { StaffBox } from "./components/index";
+import { Editor } from "./components/index";
 
 const Main = () => (
   <div className={"main"}>
-    <StaffBox />
+    <Editor />
   </div>
 );
 

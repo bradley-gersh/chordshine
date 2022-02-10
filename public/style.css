@@ -3,14 +3,14 @@
   flex-direction: column;
 }
 
-.staff-box {
+.editor {
   align-self: center;
   border-color: black;
   border-width: 1rem;
   width: 15rem;
 }
 
-.big-staff {
+.grand-staff {
   display: flex;
   flex-direction: column;
   width: 100%;

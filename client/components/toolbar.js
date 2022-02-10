@@ -27,4 +27,4 @@ RoundButton.propTypes = {
   icon: PropTypes.string,
 };
 
-export { Toolbar };
+export default Toolbar;

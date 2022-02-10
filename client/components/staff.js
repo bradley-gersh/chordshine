@@ -76,34 +76,6 @@ StaffPitch.propTypes = {
   type: PropTypes.string,
 };
 
-// const StaffSpace = ({ clef, id }) => {
-//   const isNote = clef != undefined && id != undefined ? true : false;
-
-//   const [pitch, _] = isNote
-//     ? useState(staffPitchRefs[clef][id])
-//     : [undefined, () => {}];
-
-//   return (
-//     <div
-//       className={"staff-space"}
-//       onClick={() => {
-//         if (isNote) {
-//           console.log(pitch.string);
-//         }
-//       }}
-//     >
-//       <StaffSpaceUnit />
-//       <StaffSpaceUnit />
-//       <StaffSpaceUnit />
-//     </div>
-//   );
-// };
-
-// StaffSpace.propTypes = {
-//   clef: PropTypes.string,
-//   id: PropTypes.number,
-// };
-
 const Clef = ({ clef }) => {
   return (
     <div className={"clef"}>
@@ -148,13 +120,14 @@ Clef.propTypes = {
   clef: PropTypes.string.isRequired,
 };
 
-// const Gap = () => {};
-//(
-// <div className={"gap"}>
-//   {[...Array(3).keys()].map((_, idx) => (
-//     <StaffPitch clef={clef} key={idx} type={"gap"} />
-//   ))}
-// </div>
-// );
+const GrandStaff = () => (
+  <div className={"grand-staff"}>
+    <Staff clef={"supertreble"} hasLines={false} />
+    <Staff clef={"treble"} hasLines={true} />
+    <Staff clef={"midrange"} hasLines={false} />
+    <Staff clef={"bass"} hasLines={true} />
+    <Staff clef={"subbass"} hasLines={false} />
+  </div>
+);
 
-export { Staff };
+export default GrandStaff;

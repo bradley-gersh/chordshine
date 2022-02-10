@@ -1,3 +1,3 @@
-export { StaffBox, BigStaff } from "./big-staff";
-export { Staff } from "./staff";
-export { Toolbar } from "./toolbar";
+export { default as Editor } from "./editor";
+export { default as GrandStaff } from "./staff";
+export { default as Toolbar } from "./toolbar";
