@@ -20,6 +20,7 @@ downloading and unzipping the repository, run
 ```bash
 npm install
 ```
+
 to install the package dependencies. (This only needs to be done once.)
 
 To start the server, run
@@ -28,7 +29,7 @@ To start the server, run
 npm run start
 ```
 
-then navigate in a browser to http://localhost:5000/ to see the interface.
+then navigate in a browser to `http://localhost:5000/` to see the interface.
 (At the moment, it is still under construction.) `Ctrl-C` in the terminal window
 will stop the server.
 
@@ -37,4 +38,3 @@ will stop the server.
 The glyphs for music notation are taken from the
 [Bravura](https://github.com/steinbergmedia/bravura) music font, which permits
 derivative images under the SIL Open Font License 1.1.
-
