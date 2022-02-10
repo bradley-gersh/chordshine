@@ -13,14 +13,14 @@ class Pitch {
   }
 }
 
-const superTreblePitchRefs = Array(9).fill("x0");
+const supTrebPitchRefs = ["G5", "A5", "B5", "C6", "D6", "E6", "F6", "G6", "A6"];
 const treblePitchRefs = ["E4", "F4", "G4", "A4", "B4", "C5", "D5", "E5", "F5"];
 const midRangePitchRefs = ["B3", "C4", "D4"];
 const bassPitchRefs = ["G2", "A2", "B2", "C3", "D3", "E3", "F3", "G3", "A3"];
-const subBassPitchRefs = Array(9).fill("x0");
+const subBassPitchRefs = ["E1", "F1", "G1", "A1", "B1", "C2", "D2", "E2", "F2"];
 
 const staffPitchRefs = {
-  supertreble: superTreblePitchRefs.map((pitch) => new Pitch(pitch)),
+  supertreble: supTrebPitchRefs.map((pitch) => new Pitch(pitch)),
   treble: treblePitchRefs.map((pitch) => new Pitch(pitch)),
   midrange: midRangePitchRefs.map((pitch) => new Pitch(pitch)),
   bass: bassPitchRefs.map((pitch) => new Pitch(pitch)),
