@@ -1,21 +1,6 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 
-import { GrandStaff, Toolbar } from "./index";
-
-const NoteColumn = () => <div className={"note-column"}></div>;
-
-const ClickableGrandStaff = ({ noteList, toggleNote }) => (
-  <div className={"clickable-staff"}>
-    <NoteColumn noteList={noteList} />
-    <GrandStaff toggleNote={toggleNote} />
-  </div>
-);
-
-ClickableGrandStaff.propTypes = {
-  noteList: PropTypes.array.isRequired,
-  toggleNote: PropTypes.func.isRequired,
-};
+import { ClickableGrandStaff, Toolbar } from "./index";
 
 const Editor = () => {
   const [noteList, setNoteList] = useState([]);

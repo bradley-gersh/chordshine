@@ -137,4 +137,18 @@ GrandStaff.propTypes = {
   toggleNote: PropTypes.func,
 };
 
-export default GrandStaff;
+const NoteColumn = () => <div className={"note-column"}></div>;
+
+const ClickableGrandStaff = ({ noteList, toggleNote }) => (
+  <div className={"clickable-staff"}>
+    <NoteColumn noteList={noteList} />
+    <GrandStaff toggleNote={toggleNote} />
+  </div>
+);
+
+ClickableGrandStaff.propTypes = {
+  noteList: PropTypes.array.isRequired,
+  toggleNote: PropTypes.func.isRequired,
+};
+
+export default ClickableGrandStaff;
