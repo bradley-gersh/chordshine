@@ -31,7 +31,7 @@ const StaffLineUnit = () => <div className={"staff-line-unit"}></div>;
 
 const StaffSpaceUnit = () => <div className={"staff-space-unit"}></div>;
 
-const StaffPitch = ({ clef, id, type }) => {
+const StaffPitch = ({ clef, id, type, toggleNote }) => {
   const isNote = clef != undefined && id != undefined ? true : false;
 
   const [pitch, _] = isNote
@@ -43,7 +43,11 @@ const StaffPitch = ({ clef, id, type }) => {
       className={"staff-space"}
       onClick={() => {
         if (isNote) {
-          console.log(pitch.string);
+          if (toggleNote) {
+            toggleNote(pitch.string);
+          } else {
+            console.log(pitch.string);
+          }
         }
       }}
     >
@@ -74,6 +78,7 @@ StaffPitch.propTypes = {
   clef: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   type: PropTypes.string,
+  toggleNote: PropTypes.func,
 };
 
 const Clef = ({ clef }) => {
@@ -93,7 +98,7 @@ const Clef = ({ clef }) => {
 const fullStaffIds = [...Array(9).keys()].reverse();
 const gapIds = [...Array(3).keys()].reverse();
 
-const Staff = ({ clef, hasLines }) => {
+const Staff = ({ clef, hasLines, toggleNote }) => {
   const [staffIds, _] = useState(clef == "midrange" ? gapIds : fullStaffIds);
 
   return (
@@ -104,6 +109,7 @@ const Staff = ({ clef, hasLines }) => {
           clef={clef}
           id={id}
           type={hasLines && (id + 1) % 2 ? "staff-line" : "staff-space"}
+          toggleNote={toggleNote}
           key={id}
         />
       ))}
@@ -114,20 +120,25 @@ const Staff = ({ clef, hasLines }) => {
 Staff.propTypes = {
   clef: PropTypes.string.isRequired,
   hasLines: PropTypes.bool.isRequired,
+  toggleNote: PropTypes.func,
 };
 
 Clef.propTypes = {
   clef: PropTypes.string.isRequired,
 };
 
-const GrandStaff = () => (
+const GrandStaff = ({ toggleNote }) => (
   <div className={"grand-staff"}>
-    <Staff clef={"supertreble"} hasLines={false} />
-    <Staff clef={"treble"} hasLines={true} />
-    <Staff clef={"midrange"} hasLines={false} />
-    <Staff clef={"bass"} hasLines={true} />
-    <Staff clef={"subbass"} hasLines={false} />
+    <Staff clef={"supertreble"} toggleNote={toggleNote} hasLines={false} />
+    <Staff clef={"treble"} toggleNote={toggleNote} hasLines={true} />
+    <Staff clef={"midrange"} toggleNote={toggleNote} hasLines={false} />
+    <Staff clef={"bass"} toggleNote={toggleNote} hasLines={true} />
+    <Staff clef={"subbass"} toggleNote={toggleNote} hasLines={false} />
   </div>
 );
+
+GrandStaff.propTypes = {
+  toggleNote: PropTypes.func,
+};
 
 export default GrandStaff;
