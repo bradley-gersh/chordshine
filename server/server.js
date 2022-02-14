@@ -8,6 +8,10 @@ app.disable("x-powered-by");
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "..", "public")));
 
+app.get("/public/:resource", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "..", "public/" + req.params.resource));
+});
+
 app.get("/", (req, res, next) => {
   res.sendFile(path.join(__dirname, "..", "client", "index.html"));
 });

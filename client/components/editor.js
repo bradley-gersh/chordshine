@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import * as Tone from "tone";
+import React, { useState, useEffect } from "react";
 
 import { ClickableGrandStaff, Toolbar } from "./index";
 
-console.log("fire!");
-const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+let Tone;
 
 const Editor = () => {
   const [noteList, setNoteList] = useState([]);
-  const [soundStarted, setSoundStarted] = useState(false);
+  const [synth, setSynth] = useState(undefined);
 
   const toggleNote = async (noteStr) => {
-    if (!soundStarted) {
-      setSoundStarted(true);
+    if (!synth) {
+      import("react");
+      Tone = await import("tone");
       await Tone.start();
+      setSynth(new Tone.PolySynth(Tone.Synth).toDestination());
     }
 
     const loc = noteList.indexOf(noteStr);
@@ -24,10 +24,10 @@ const Editor = () => {
     setNoteList(newNoteList);
 
     if (loc > -1) {
-      synth.triggerRelease(noteStr);
+      if (synth) synth.triggerRelease(noteStr);
       console.log("note toggled off: " + noteStr);
     } else {
-      synth.triggerAttack(noteStr);
+      if (synth) synth.triggerAttack(noteStr);
       console.log("note toggled on: " + noteStr);
     }
   };
