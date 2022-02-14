@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 // import { toggleNote } from "../store";
 
@@ -33,10 +33,7 @@ const StaffSpaceUnit = () => <div className={"staff-space-unit"}></div>;
 
 const StaffPitch = ({ clef, id, type, toggleNote }) => {
   const isNote = clef != undefined && id != undefined ? true : false;
-
-  const [pitch, _] = isNote
-    ? useState(staffPitchRefs[clef][id])
-    : [undefined, () => {}];
+  const pitch = isNote ? staffPitchRefs[clef][id] : undefined;
 
   return (
     <div
@@ -99,7 +96,7 @@ const fullStaffIds = [...Array(9).keys()].reverse();
 const gapIds = [...Array(3).keys()].reverse();
 
 const Staff = ({ clef, hasLines, toggleNote }) => {
-  const [staffIds, _] = useState(clef == "midrange" ? gapIds : fullStaffIds);
+  const staffIds = clef == "midrange" ? gapIds : fullStaffIds;
 
   return (
     <div className={"staff"}>
