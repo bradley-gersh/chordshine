@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import { Treble, Bass } from "./icons";
+import { Treble, Bass } from "./Icons";
 
 class Pitch {
   constructor(pitchStr, accidental) {
@@ -34,13 +34,16 @@ const StaffPitch = ({ clef, id, type, toggleNote }) => {
   const isNote = clef != undefined && id != undefined ? true : false;
   const pitch = isNote ? staffPitchRefs[clef][id] : undefined;
 
+  const [isSounding, setIsSounding] = useState(false);
+
   return (
     <div
-      className={"staff-space"}
+      className={"staff-pitch" + (isSounding ? " sounding" : "")}
       onClick={() => {
         if (isNote) {
           if (toggleNote) {
             toggleNote(pitch.string);
+            setIsSounding(!isSounding);
           } else {
             console.log(pitch.string);
           }
@@ -52,12 +55,6 @@ const StaffPitch = ({ clef, id, type, toggleNote }) => {
           <StaffSpaceUnit />
           <StaffLineUnit />
           <StaffSpaceUnit />
-        </>
-      ) : type == "staff-pitch" ? (
-        <>
-          <StaffLineUnit />
-          <StaffSpaceUnit />
-          <StaffLineUnit />
         </>
       ) : (
         <>

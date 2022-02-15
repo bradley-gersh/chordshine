@@ -1,3 +1,4 @@
-export { default as Editor } from "./editor";
-export { default as ClickableGrandStaff } from "./staff";
-export { default as Toolbar } from "./toolbar";
+export { default as Editor } from "./Editor";
+export { default as ClickableGrandStaff } from "./Staff";
+export { default as Toolbar } from "./Toolbar";
+export { default as SplashModal } from "./SplashModal";

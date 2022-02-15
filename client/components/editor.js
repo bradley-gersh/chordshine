@@ -1,21 +1,12 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 import { ClickableGrandStaff, Toolbar } from "./index";
 
-let Tone;
-
-const Editor = () => {
+const Editor = ({ synth }) => {
   const [noteList, setNoteList] = useState([]);
-  const [synth, setSynth] = useState(undefined);
 
-  const toggleNote = async (noteStr) => {
-    if (!synth) {
-      import("react");
-      Tone = await import("tone");
-      await Tone.start();
-      setSynth(new Tone.PolySynth(Tone.Synth).toDestination());
-    }
-
+  const toggleNote = (noteStr) => {
     const loc = noteList.indexOf(noteStr);
     const newNoteList =
       loc > -1
@@ -38,6 +29,10 @@ const Editor = () => {
       <Toolbar />
     </div>
   );
+};
+
+Editor.propTypes = {
+  synth: PropTypes.object,
 };
 
 export default Editor;
