@@ -1,10 +1,14 @@
 export default class Note {
-  constructor(noteName) {
-    this.pc = noteName[0];
-    this.accidental = noteName[1];
-    this.octave = noteName.slice(2);
-    this.midiNote = toMidi(this.pc, this.octave, this.accidental);
+  constructor(noteStr) {
+    this.string = noteStr;
+    this.diaPc = noteStr[0];
+    this.accidental = isNaN(Number(noteStr[1])) ? noteStr[1] : "";
+    this.octave = isNaN(Number(noteStr[1]))
+      ? noteStr.slice(2)
+      : noteStr.slice(1);
+    this.midiNote = toMidi(this.diaPc, this.octave, this.accidental);
     this.vol = 100;
+    this.noteCol = -1;
   }
 }
 

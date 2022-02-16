@@ -2,50 +2,43 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import { Treble, Bass } from "./Icons";
+import NoteColumn from "./NoteColumn";
+import Note from "./Note";
 
-class Pitch {
-  constructor(pitchStr, accidental) {
-    this.diaPc = pitchStr[0];
-    this.octave = pitchStr.slice(1);
-    this.accidental = accidental ? accidental : "";
-    this.string = this.diaPc + this.accidental + this.octave;
-  }
-}
+const supTrebNoteRefs = ["G5", "A5", "B5", "C6", "D6", "E6", "F6", "G6", "A6"];
+const trebleNoteRefs = ["E4", "F4", "G4", "A4", "B4", "C5", "D5", "E5", "F5"];
+const midRangeNoteRefs = ["B3", "C4", "D4"];
+const bassNoteRefs = ["G2", "A2", "B2", "C3", "D3", "E3", "F3", "G3", "A3"];
+const subBassNoteRefs = ["E1", "F1", "G1", "A1", "B1", "C2", "D2", "E2", "F2"];
 
-const supTrebPitchRefs = ["G5", "A5", "B5", "C6", "D6", "E6", "F6", "G6", "A6"];
-const treblePitchRefs = ["E4", "F4", "G4", "A4", "B4", "C5", "D5", "E5", "F5"];
-const midRangePitchRefs = ["B3", "C4", "D4"];
-const bassPitchRefs = ["G2", "A2", "B2", "C3", "D3", "E3", "F3", "G3", "A3"];
-const subBassPitchRefs = ["E1", "F1", "G1", "A1", "B1", "C2", "D2", "E2", "F2"];
-
-const staffPitchRefs = {
-  supertreble: supTrebPitchRefs.map((pitch) => new Pitch(pitch)),
-  treble: treblePitchRefs.map((pitch) => new Pitch(pitch)),
-  midrange: midRangePitchRefs.map((pitch) => new Pitch(pitch)),
-  bass: bassPitchRefs.map((pitch) => new Pitch(pitch)),
-  subbass: subBassPitchRefs.map((pitch) => new Pitch(pitch)),
+const staffNoteRefs = {
+  supertreble: supTrebNoteRefs.map((note) => new Note(note)),
+  treble: trebleNoteRefs.map((note) => new Note(note)),
+  midrange: midRangeNoteRefs.map((note) => new Note(note)),
+  bass: bassNoteRefs.map((note) => new Note(note)),
+  subbass: subBassNoteRefs.map((note) => new Note(note)),
 };
 
 const StaffLineUnit = () => <div className={"staff-line-unit"}></div>;
 
 const StaffSpaceUnit = () => <div className={"staff-space-unit"}></div>;
 
-const StaffPitch = ({ clef, id, type, toggleNote }) => {
+const StaffNote = ({ clef, id, type, toggleNote }) => {
   const isNote = clef != undefined && id != undefined ? true : false;
-  const pitch = isNote ? staffPitchRefs[clef][id] : undefined;
+  const note = isNote ? staffNoteRefs[clef][id] : undefined;
 
   const [isSounding, setIsSounding] = useState(false);
 
   return (
     <div
-      className={"staff-pitch" + (isSounding ? " sounding" : "")}
+      className={"staff-note" + (isSounding ? " sounding" : "")}
       onClick={() => {
         if (isNote) {
           if (toggleNote) {
-            toggleNote(pitch.string);
+            toggleNote(note.string);
             setIsSounding(!isSounding);
           } else {
-            console.log(pitch.string);
+            console.log(note.string);
           }
         }
       }}
@@ -67,7 +60,7 @@ const StaffPitch = ({ clef, id, type, toggleNote }) => {
   );
 };
 
-StaffPitch.propTypes = {
+StaffNote.propTypes = {
   clef: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   type: PropTypes.string,
@@ -98,7 +91,7 @@ const Staff = ({ clef, hasLines, toggleNote }) => {
     <div className={"staff"}>
       <Clef clef={clef} />
       {staffIds.map((id) => (
-        <StaffPitch
+        <StaffNote
           clef={clef}
           id={id}
           type={hasLines && (id + 1) % 2 ? "staff-line" : "staff-space"}
@@ -133,8 +126,6 @@ const GrandStaff = ({ toggleNote }) => (
 GrandStaff.propTypes = {
   toggleNote: PropTypes.func,
 };
-
-const NoteColumn = () => <div className={"note-column"}></div>;
 
 const ClickableGrandStaff = ({ noteList, toggleNote }) => (
   <div className={"clickable-staff"}>

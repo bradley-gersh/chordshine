@@ -58,11 +58,11 @@
   height: 2px;
 }
 
-.staff-pitch:hover {
+.staff-note:hover {
   background-color: darkcyan;
 }
 
-.staff-pitch.sounding {
+.staff-note.sounding {
   background-color: rgba(20, 10, 50, 0.6);
 }
 
