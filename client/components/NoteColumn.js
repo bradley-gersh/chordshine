@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import { Notehead } from "./Icons";
 
+const C4 = 5;
+
 const noteToGrid = (noteObj, noteList) => {
   // given a note string, returns the component
   // to add to the NoteColumn.
@@ -15,14 +17,32 @@ const noteToGrid = (noteObj, noteList) => {
   // if a pitch slot has one pitch, place it in slot 1.
   // if any pitch has a neighbor below, place it in the opposed slot. If no neighbor below, the left slot.
   // Consider putting this logic on each line.
-  // return <Notehead style={{
-  //  grid-column-start: col,
-  //  grid-row-start: row
-  //  }} />
+  return (
+    <Notehead
+      style={{
+        gridColumnStart: 2,
+        gridRowStart: 3,
+      }}
+    />
+  );
 };
 
 const NoteColumn = ({ noteList }) => {
-  return <div className={"note-column"}></div>;
+  return (
+    <div className={"note-column"}>
+      {noteList.length > 0 ? (
+        <>
+          <Notehead row={11} col={3} />
+          <Notehead row={13} col={3} />
+          <Notehead row={12} col={3} alt={true} />
+          <Notehead row={10} col={2} />
+          <Notehead row={11} col={1} />
+        </>
+      ) : (
+        <></>
+      )}
+    </div>
+  );
 };
 
 NoteColumn.propTypes = {

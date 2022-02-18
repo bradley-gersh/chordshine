@@ -3,19 +3,41 @@ import PropTypes from "prop-types";
 
 // Glyphs based on the Bravura music font by Daniel Spreadbury
 
-const Notehead = () => (
-  <svg viewBox="0 0 100 100">
-    <path
-      d="M 97 -125
+const Notehead = ({ row, col, alt }) => {
+  const style = {
+    position: "relative",
+    alignSelf: "center",
+    gridColumnStart: col,
+    gridRowStart: row,
+    top: "-2px",
+  };
+
+  if (alt) {
+    style["left"] = "14px";
+  }
+
+  return (
+    <div className="foo" style={style}>
+      <svg viewBox={[0, 0, 20, 20]} vectorEffect={"non-scaling-stroke"}>
+        <path
+          d="M 97 -125
          c -54 0 -97 31 -97 83
          c 0 86 88 167 198 167
          c 57 0 97 -32 97 -83
          c 0 -85 -109 -167 -198 -167
          z"
-      transform="matrix(1 0 0 -1 0 3) scale(0.005)"
-    />
-  </svg>
-);
+          transform={"matrix(1 0 0 -1 0 8) scale(0.055)"}
+        />
+      </svg>
+    </div>
+  );
+};
+
+Notehead.propTypes = {
+  row: PropTypes.number,
+  col: PropTypes.number,
+  alt: PropTypes.bool,
+};
 
 const Treble = () => (
   <svg
