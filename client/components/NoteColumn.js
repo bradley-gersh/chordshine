@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 
 import { Notehead } from "./Icons";
 
-const C4 = 5;
-
 const noteToGrid = (noteObj, noteList) => {
   // given a note string, returns the component
   // to add to the NoteColumn.
@@ -30,17 +28,9 @@ const noteToGrid = (noteObj, noteList) => {
 const NoteColumn = ({ noteList }) => {
   return (
     <div className={"note-column"}>
-      {noteList.length > 0 ? (
-        <>
-          <Notehead row={11} col={3} />
-          <Notehead row={13} col={3} />
-          <Notehead row={12} col={3} alt={true} />
-          <Notehead row={10} col={2} />
-          <Notehead row={11} col={1} />
-        </>
-      ) : (
-        <></>
-      )}
+      {noteList.map((note) => (
+        <Notehead row={note.noteRow} col={note.noteCol} key={note.string} />
+      ))}
     </div>
   );
 };

@@ -59,12 +59,12 @@
 }
 
 .staff-note:hover {
-  background-color: darkcyan;
+  background-color: rgba(0, 139, 139, 0.3);
 }
 
-.staff-note.sounding {
-  background-color: rgba(20, 10, 50, 0.6);
-}
+/* .staff-note.sounding { */
+/* background-color: rgba(20, 10, 50, 0.6); */
+/* } */
 
 .note-column {
   display: grid;
