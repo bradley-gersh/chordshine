@@ -28,9 +28,14 @@ const noteToGrid = (noteObj, noteList) => {
 const NoteColumn = ({ noteList }) => {
   return (
     <div className={"note-column"}>
-      {noteList.map((note) => (
-        <Notehead row={note.noteRow} col={note.noteCol} key={note.string} />
-      ))}
+      {noteList.map((note) => {
+        // check if the note has a lower neighbor in the notegrid
+        // that is not an alternate. If so, this is
+        // an `alt` Notehead.
+        return (
+          <Notehead row={note.noteRow} col={note.noteCol} key={note.string} />
+        );
+      })}
     </div>
   );
 };

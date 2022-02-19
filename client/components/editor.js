@@ -3,8 +3,16 @@ import PropTypes from "prop-types";
 
 import { ClickableGrandStaff, Note, Toolbar } from "./index";
 
+const noteGridHeight = 39;
+const noteGridWidth = 3;
+
 const Editor = ({ synth }) => {
   const [noteList, setNoteList] = useState([]);
+  const [noteGrid, setNoteGrid] = useState(
+    Array(noteGridHeight)
+      .fill(false)
+      .map((_) => Array(noteGridWidth).fill(false))
+  );
 
   const toggleNote = (noteStr) => {
     const loc = noteList.map((note) => note.string).indexOf(noteStr);
