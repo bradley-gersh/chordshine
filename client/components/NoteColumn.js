@@ -16,7 +16,6 @@ const noteToGrid = (note /*, noteList, noteGrid, toggleNote*/) => {
   // Neighbor below = one row higher, same column.
   // if any pitch has a neighbor below with alt===false, alt=true. Else alt=false.
 
-  console.log(note.string);
   return <NoteDisplay note={note} key={note.string} />;
 };
 

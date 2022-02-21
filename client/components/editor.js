@@ -33,8 +33,8 @@ const Editor = ({ synth }) => {
         ];
       }
 
-      if (synth) synth.triggerRelease(noteStr);
-      console.log("note toggled off: " + noteList[loc].row);
+      if (synth) synth.triggerRelease(newNote.string);
+      // console.log("note toggled off: " + noteList[loc].row);
     } else {
       if (newNoteGrid[newNote.row]) {
         newNoteGrid[newNote.row].push(newNote.col);
@@ -42,8 +42,8 @@ const Editor = ({ synth }) => {
         newNoteGrid[newNote.row] = [newNote.col];
       }
 
-      if (synth) synth.triggerAttack(noteStr);
-      console.log("note toggled on: " + newNote.row);
+      if (synth) synth.triggerAttack(newNote.string);
+      // console.log("note toggled on: " + newNote.row);
     }
 
     setNoteGrid(newNoteGrid);
