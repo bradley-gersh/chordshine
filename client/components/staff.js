@@ -23,10 +23,9 @@ const StaffLineUnit = () => <div className={"staff-line-unit"}></div>;
 
 const StaffSpaceUnit = () => <div className={"staff-space-unit"}></div>;
 
-const StaffNote = ({ clef, id, type, toggleNote }) => {
+const StaffSlot = ({ clef, id, type, toggleNote }) => {
   const isNote = clef != undefined && id != undefined ? true : false;
   const note = isNote ? staffNoteRefs[clef][id] : undefined;
-
   const [isSounding, setIsSounding] = useState(false);
 
   return (
@@ -60,7 +59,7 @@ const StaffNote = ({ clef, id, type, toggleNote }) => {
   );
 };
 
-StaffNote.propTypes = {
+StaffSlot.propTypes = {
   clef: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   type: PropTypes.string,
@@ -91,7 +90,7 @@ const Staff = ({ clef, hasLines, toggleNote }) => {
     <div className={"staff"}>
       <Clef clef={clef} />
       {staffIds.map((id) => (
-        <StaffNote
+        <StaffSlot
           clef={clef}
           id={id}
           type={hasLines && (id + 1) % 2 ? "staff-line" : "staff-space"}
@@ -106,6 +105,7 @@ const Staff = ({ clef, hasLines, toggleNote }) => {
 Staff.propTypes = {
   clef: PropTypes.string.isRequired,
   hasLines: PropTypes.bool.isRequired,
+  activeAcc: PropTypes.number.isRequired,
   toggleNote: PropTypes.func,
 };
 
@@ -113,30 +113,57 @@ Clef.propTypes = {
   clef: PropTypes.string.isRequired,
 };
 
-const GrandStaff = ({ toggleNote }) => (
+const GrandStaff = ({ toggleNote, activeAcc }) => (
   <div className={"grand-staff"}>
-    <Staff clef={"supertreble"} toggleNote={toggleNote} hasLines={false} />
-    <Staff clef={"treble"} toggleNote={toggleNote} hasLines={true} />
-    <Staff clef={"midrange"} toggleNote={toggleNote} hasLines={false} />
-    <Staff clef={"bass"} toggleNote={toggleNote} hasLines={true} />
-    <Staff clef={"subbass"} toggleNote={toggleNote} hasLines={false} />
+    <Staff
+      clef={"supertreble"}
+      toggleNote={toggleNote}
+      hasLines={false}
+      activeAcc={activeAcc}
+    />
+    <Staff
+      clef={"treble"}
+      toggleNote={toggleNote}
+      hasLines={true}
+      activeAcc={activeAcc}
+    />
+    <Staff
+      clef={"midrange"}
+      toggleNote={toggleNote}
+      hasLines={false}
+      activeAcc={activeAcc}
+    />
+    <Staff
+      clef={"bass"}
+      toggleNote={toggleNote}
+      hasLines={true}
+      activeAcc={activeAcc}
+    />
+    <Staff
+      clef={"subbass"}
+      toggleNote={toggleNote}
+      hasLines={false}
+      activeAcc={activeAcc}
+    />
   </div>
 );
 
 GrandStaff.propTypes = {
   toggleNote: PropTypes.func,
+  activeAcc: PropTypes.number.isRequired,
 };
 
-const ClickableGrandStaff = ({ noteList, toggleNote }) => (
+const ClickableGrandStaff = ({ noteList, toggleNote, activeAcc }) => (
   <div className={"clickable-staff"}>
-    <NoteColumn noteList={noteList} />
-    <GrandStaff toggleNote={toggleNote} />
+    <NoteColumn noteList={noteList} toggleNote={toggleNote} />
+    <GrandStaff toggleNote={toggleNote} activeAcc={activeAcc} />
   </div>
 );
 
 ClickableGrandStaff.propTypes = {
   noteList: PropTypes.array.isRequired,
   toggleNote: PropTypes.func.isRequired,
+  activeAcc: PropTypes.number.isRequired,
 };
 
 export default ClickableGrandStaff;

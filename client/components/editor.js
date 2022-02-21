@@ -6,11 +6,12 @@ import { ClickableGrandStaff, Note, Toolbar } from "./index";
 const Editor = ({ synth }) => {
   const [noteList, setNoteList] = useState([]);
   const [noteGrid, setNoteGrid] = useState({});
+  const [activeAcc, setActiveAcc] = useState(0);
 
   const toggleNote = (noteStr) => {
     const loc = noteList.map((note) => note.string).indexOf(noteStr);
-
-    const newNote = new Note(noteStr);
+    console.log(activeAcc);
+    const newNote = new Note(noteStr, activeAcc);
 
     const newNoteList =
       loc > -1
@@ -51,8 +52,12 @@ const Editor = ({ synth }) => {
 
   return (
     <div className={"editor"}>
-      <ClickableGrandStaff noteList={noteList} toggleNote={toggleNote} />
-      <Toolbar />
+      <ClickableGrandStaff
+        noteList={noteList}
+        toggleNote={toggleNote}
+        activeAcc={activeAcc}
+      />
+      <Toolbar activeAcc={activeAcc} setActiveAcc={setActiveAcc} />
     </div>
   );
 };

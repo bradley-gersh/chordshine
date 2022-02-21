@@ -3,40 +3,20 @@ import PropTypes from "prop-types";
 
 // Glyphs based on the Bravura music font by Daniel Spreadbury
 
-const Notehead = ({ row, col, alt }) => {
-  const style = {
-    position: "relative",
-    alignSelf: "center",
-    gridColumnStart: col,
-    gridRowStart: row,
-    top: "-2px",
-  };
-
-  if (alt) {
-    style["left"] = "14px";
-  }
-
+const NoteheadIcon = () => {
   return (
-    <div className="foo" style={style}>
-      <svg viewBox={[0, 0, 20, 20]} vectorEffect={"non-scaling-stroke"}>
-        <path
-          d="M 97 -125
+    <svg viewBox={[0, 0, 20, 20]} vectorEffect={"non-scaling-stroke"}>
+      <path
+        d="M 97 -125
          c -54 0 -97 31 -97 83
          c 0 86 88 167 198 167
          c 57 0 97 -32 97 -83
          c 0 -85 -109 -167 -198 -167
          z"
-          transform={"matrix(1 0 0 -1 0 8) scale(0.055)"}
-        />
-      </svg>
-    </div>
+        transform={"matrix(1 0 0 -1 0 8) scale(0.055)"}
+      />
+    </svg>
   );
-};
-
-Notehead.propTypes = {
-  row: PropTypes.number,
-  col: PropTypes.number,
-  alt: PropTypes.bool,
 };
 
 const Treble = () => (
@@ -181,7 +161,7 @@ const Flat = ({ className }) => (
          c 0,-40 3,-100 3,-100
          z"
       transform="matrix(1 0 0 -1 5 25) scale(0.05)"
-    />{" "}
+    />
   </svg>
 );
 
@@ -191,7 +171,7 @@ const Natural = ({ className }) => (
       d="M 141 181l15 5c1 1 3 1 4 1c4 0 8 -3 8 -8v-502c0 -7 -6 -12 -12 -12h-13c-7 0 -12 5 -12 12v149c0 8 -7 11 -17 11c-29 0 -85 -24 -99 -30c-1 -1 -3 -1 -4 -1l-2 -1c-6 0 -9 3 -9 9v515c0 7 5 12 12 12h13c6 0 12 -5 12 -12v-167c0 -4 4 -5 10 -5c26 0 90 23 90 23
       c1 0 2 1 4 1zM37 39v-103c0 -4 5 -6 12 -6c25 0 82 23 82 41v103c0 4 -3 5 -9 5c-24 0 -85 -26 -85 -40z"
       transform="matrix(1 0 0 -1 5 22) scale(0.05)"
-    />{" "}
+    />
   </svg>
 );
 
@@ -287,4 +267,4 @@ Flat.propTypes = {
   className: PropTypes.string,
 };
 
-export { Notehead, Treble, Bass, Flat, Sharp, Natural };
+export { NoteheadIcon, Treble, Bass, Flat, Sharp, Natural };
