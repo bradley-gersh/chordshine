@@ -8,6 +8,12 @@ const Editor = ({ synth }) => {
   const [noteGrid, setNoteGrid] = useState({});
   const [activeAcc, setActiveAcc] = useState(0);
 
+  const clearNoteList = () => {
+    setNoteList([]);
+    setNoteGrid({});
+    synth.releaseAll();
+  };
+
   const toggleNote = (noteStr) => {
     const newNote = new Note(noteStr, activeAcc);
     const loc = noteList.map((note) => note.string).indexOf(newNote.string);
@@ -57,7 +63,11 @@ const Editor = ({ synth }) => {
         toggleNote={toggleNote}
         activeAcc={activeAcc}
       />
-      <Toolbar activeAcc={activeAcc} setActiveAcc={setActiveAcc} />
+      <Toolbar
+        activeAcc={activeAcc}
+        setActiveAcc={setActiveAcc}
+        clearNoteList={clearNoteList}
+      />
     </div>
   );
 };

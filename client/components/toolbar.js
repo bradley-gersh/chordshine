@@ -3,24 +3,29 @@ import PropTypes from "prop-types";
 
 import { Sharp, Natural, Flat } from "./Icons";
 
-const Toolbar = ({ activeAcc, setActiveAcc }) => {
+const Toolbar = ({ activeAcc, setActiveAcc, clearNoteList }) => {
   return (
     <div className={"toolbar"}>
-      <RoundButton
-        icon={"sharp"}
-        activeAcc={activeAcc}
-        setActiveAcc={setActiveAcc}
-      />
-      <RoundButton
-        icon={"natural"}
-        activeAcc={activeAcc}
-        setActiveAcc={setActiveAcc}
-      />
-      <RoundButton
-        icon={"flat"}
-        activeAcc={activeAcc}
-        setActiveAcc={setActiveAcc}
-      />
+      <div className={"toolbar-row"}>
+        <AccidentalButton
+          icon={"sharp"}
+          activeAcc={activeAcc}
+          setActiveAcc={setActiveAcc}
+        />
+        <AccidentalButton
+          icon={"natural"}
+          activeAcc={activeAcc}
+          setActiveAcc={setActiveAcc}
+        />
+        <AccidentalButton
+          icon={"flat"}
+          activeAcc={activeAcc}
+          setActiveAcc={setActiveAcc}
+        />
+      </div>
+      <div className={"toolbar-row"}>
+        <ClearButton clearNoteList={clearNoteList} />
+      </div>
     </div>
   );
 };
@@ -28,6 +33,7 @@ const Toolbar = ({ activeAcc, setActiveAcc }) => {
 Toolbar.propTypes = {
   activeAcc: PropTypes.number.isRequired,
   setActiveAcc: PropTypes.func.isRequired,
+  clearNoteList: PropTypes.func.isRequired,
 };
 
 const activeAccToIcon = (activeAcc) => {
@@ -54,7 +60,7 @@ const iconToActiveAcc = (icon) => {
   }
 };
 
-const RoundButton = ({ icon, activeAcc, setActiveAcc }) => {
+const AccidentalButton = ({ icon, activeAcc, setActiveAcc }) => {
   return (
     <button
       className={
@@ -76,10 +82,22 @@ const RoundButton = ({ icon, activeAcc, setActiveAcc }) => {
   );
 };
 
-RoundButton.propTypes = {
+AccidentalButton.propTypes = {
   icon: PropTypes.string,
   activeAcc: PropTypes.number,
   setActiveAcc: PropTypes.func,
+};
+
+const ClearButton = ({ clearNoteList }) => {
+  return (
+    <button className={"clear-button"} onClick={clearNoteList}>
+      Clear
+    </button>
+  );
+};
+
+ClearButton.propTypes = {
+  clearNoteList: PropTypes.func,
 };
 
 export default Toolbar;
