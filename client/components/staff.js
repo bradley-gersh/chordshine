@@ -37,7 +37,7 @@ const StaffSlot = ({ clef, id, type, toggleNote }) => {
             toggleNote(note.string);
             setIsSounding(!isSounding);
           } else {
-            console.log(note.string);
+            console.error("Not a toggleNote event.");
           }
         }
       }}

@@ -16,21 +16,22 @@ const noteToGrid = (note /*, noteList, noteGrid, toggleNote*/) => {
   // Neighbor below = one row higher, same column.
   // if any pitch has a neighbor below with alt===false, alt=true. Else alt=false.
 
+  console.log(note.string);
   return <NoteDisplay note={note} key={note.string} />;
 };
 
-const NoteColumn = ({ noteList, noteGrid, toggleNote }) => {
+const NoteColumn = ({ noteList }) => {
   return (
     <div className={"note-column"}>
-      {noteList.map((note) => noteToGrid(note, noteGrid, toggleNote))}
+      {noteList.map((note) => noteToGrid(note))}
     </div>
   );
 };
 
 NoteColumn.propTypes = {
   noteList: PropTypes.array,
-  noteGrid: PropTypes.object,
-  toggleNote: PropTypes.func,
+  // noteGrid: PropTypes.object,
+  // toggleNote: PropTypes.func,
 };
 
 export default NoteColumn;

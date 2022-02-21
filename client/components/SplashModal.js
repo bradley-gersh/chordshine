@@ -12,7 +12,7 @@ const SplashModal = ({ setModalVisible, setToneJs }) => {
           const tempTone = await import("tone");
           await tempTone.start();
           setToneJs(tempTone);
-          console.log("tone started");
+          // console.log("tone started");
           setModalVisible(false);
         }}
       >

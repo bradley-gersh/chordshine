@@ -9,9 +9,8 @@ const Editor = ({ synth }) => {
   const [activeAcc, setActiveAcc] = useState(0);
 
   const toggleNote = (noteStr) => {
-    const loc = noteList.map((note) => note.string).indexOf(noteStr);
-    console.log(activeAcc);
     const newNote = new Note(noteStr, activeAcc);
+    const loc = noteList.map((note) => note.string).indexOf(newNote.string);
 
     const newNoteList =
       loc > -1
@@ -33,6 +32,7 @@ const Editor = ({ synth }) => {
           oldNoteRow.slice(colLoc + 1),
         ];
       }
+
       if (synth) synth.triggerRelease(noteStr);
       console.log("note toggled off: " + noteList[loc].row);
     } else {
@@ -47,7 +47,7 @@ const Editor = ({ synth }) => {
     }
 
     setNoteGrid(newNoteGrid);
-    console.log(newNoteGrid);
+    // console.log(newNoteGrid);
   };
 
   return (

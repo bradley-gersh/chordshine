@@ -15,8 +15,7 @@
 
 export default class Note {
   constructor(noteStr, accidental) {
-    console.log(accidental);
-    this.string = noteStr;
+    this.string = toNoteString(noteStr, accidental);
     this.diaPc = noteStr[0];
     this.accidental = accidental ? accidental : 0;
     this.octave = isNaN(Number(noteStr[1]))
@@ -27,6 +26,18 @@ export default class Note {
     this.row = toNoteRow(this.diaPc, this.octave);
     this.col = 2;
     this.alt = false;
+  }
+}
+
+function toNoteString(noteStr, accidental) {
+  if (accidental === undefined || accidental === 0) {
+    return noteStr;
+  } else if (accidental === -1) {
+    return noteStr[0] + "b" + noteStr[1];
+  } else if (accidental === 1) {
+    return noteStr[0] + "#" + noteStr[1];
+  } else {
+    console.error("Invalid note string: " + accidental + noteStr);
   }
 }
 
