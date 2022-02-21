@@ -70,7 +70,7 @@ Accidental.propTypes = {
   fillColor: PropTypes.string,
 };
 
-const NoteDisplay = ({ note, synth }) => {
+const NoteDisplay = ({ note }) => {
   const [colorR, setColorR] = useState(0);
 
   useInterval(() => {
@@ -98,7 +98,7 @@ const NoteDisplay = ({ note, synth }) => {
 
 NoteDisplay.propTypes = {
   note: PropTypes.object,
-  synth: PropTypes.object,
+  // synth: PropTypes.object,
 };
 
 export default NoteDisplay;

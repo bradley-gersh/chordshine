@@ -88,7 +88,7 @@ const Editor = ({ synth }) => {
         noteList={noteList}
         toggleNote={toggleNote}
         activeAcc={activeAcc}
-        synth={synth}
+        // synth={synth}
       />
       <Toolbar
         activeAcc={activeAcc}
