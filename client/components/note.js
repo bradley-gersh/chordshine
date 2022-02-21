@@ -8,8 +8,8 @@ export default class Note {
       : noteStr.slice(1);
     this.midiNote = toMidi(this.diaPc, this.octave, this.accidental);
     this.vol = 100;
-    this.noteCol = 2;
-    this.noteRow = toNoteRow(this.diaPc, this.octave);
+    this.col = 2;
+    this.row = toNoteRow(this.diaPc, this.octave);
   }
 }
 

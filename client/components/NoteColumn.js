@@ -32,9 +32,7 @@ const NoteColumn = ({ noteList }) => {
         // check if the note has a lower neighbor in the notegrid
         // that is not an alternate. If so, this is
         // an `alt` Notehead.
-        return (
-          <Notehead row={note.noteRow} col={note.noteCol} key={note.string} />
-        );
+        return <Notehead row={note.row} col={note.col} key={note.string} />;
       })}
     </div>
   );
