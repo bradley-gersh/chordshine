@@ -3,20 +3,25 @@ import PropTypes from "prop-types";
 
 // Glyphs based on the Bravura music font by Daniel Spreadbury
 
-const NoteheadIcon = () => {
+const NoteheadIcon = ({ fillColor }) => {
   return (
     <svg viewBox={[0, 0, 20, 20]} vectorEffect={"non-scaling-stroke"}>
       <path
+        fill={fillColor}
         d="M 97,-125
            c -54,0 -97,31 -97,83
            c 0,86 88,167 198,167
            c 57,0 97,-32 97,-83
            c 0,-85 -109,-167 -198,-167
            z"
-        transform={"matrix(1 0 0 -1 0 8) scale(0.055)"}
+        transform={"matrix(1 0 0 -1 0 8) scale(0.05)"}
       />
     </svg>
   );
+};
+
+NoteheadIcon.propTypes = {
+  fillColor: PropTypes.string,
 };
 
 const Treble = () => (
@@ -135,9 +140,10 @@ const Bass = () => (
   </svg>
 );
 
-const Flat = ({ className }) => (
+const Flat = ({ className, fillColor }) => (
   <svg className={className} height="40" width="20">
     <path
+      fill={fillColor}
       d="M 12,-170
          c -8,10 -12,581 -12,581
          c 1,18 17,28 31,28
@@ -171,9 +177,10 @@ const Flat = ({ className }) => (
   </svg>
 );
 
-const Natural = ({ className }) => (
+const Natural = ({ className, fillColor }) => (
   <svg className={className} height="40" width="20">
     <path
+      fill={fillColor}
       d="M 141,181
          l 15,5
          c 1,1 3,1 4,1
@@ -205,9 +212,10 @@ const Natural = ({ className }) => (
   </svg>
 );
 
-const Sharp = ({ className }) => (
+const Sharp = ({ className, fillColor }) => (
   <svg className={className} height="40" width="20">
     <path
+      fill={fillColor}
       d="M 237,118
          l -26,-10
          c -8,-3 -13,-22 -13,-29
@@ -291,14 +299,17 @@ const Sharp = ({ className }) => (
 
 Sharp.propTypes = {
   className: PropTypes.string,
+  fillColor: PropTypes.string,
 };
 
 Natural.propTypes = {
   className: PropTypes.string,
+  fillColor: PropTypes.string,
 };
 
 Flat.propTypes = {
   className: PropTypes.string,
+  fillColor: PropTypes.string,
 };
 
 export { NoteheadIcon, Treble, Bass, Flat, Sharp, Natural };

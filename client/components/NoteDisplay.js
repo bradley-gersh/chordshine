@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
+import { default as useInterval } from "./Interval.js";
 import { NoteheadIcon, Flat, Natural, Sharp } from "./Icons";
 
-const Notehead = ({ row, col, alt }) => {
+const Notehead = ({ row, col, alt, fillColor }) => {
   const style = {
     position: "relative",
     alignSelf: "center",
@@ -17,8 +18,8 @@ const Notehead = ({ row, col, alt }) => {
   }
 
   return (
-    <div style={style}>
-      <NoteheadIcon />
+    <div className={"staff-glyph"} style={style}>
+      <NoteheadIcon fillColor={fillColor} />
     </div>
   );
 };
@@ -27,15 +28,16 @@ Notehead.propTypes = {
   row: PropTypes.number.isRequired,
   col: PropTypes.number.isRequired,
   alt: PropTypes.bool,
+  fillColor: PropTypes.string,
 };
 
-const Accidental = ({ type, row, col, alt }) => {
+const Accidental = ({ type, row, col, alt, fillColor }) => {
   const style = {
     position: "relative",
     alignSelf: "center",
     gridColumnStart: col,
     gridRowStart: row,
-    top: "-7px",
+    top: "-5px",
     left: "-25px",
   };
 
@@ -50,11 +52,11 @@ const Accidental = ({ type, row, col, alt }) => {
   return (
     <div style={style}>
       {type === -1 ? (
-        <Flat className={"accidental-staff"} />
+        <Flat className="staff-glyph" fillColor={fillColor} />
       ) : type === 1 ? (
-        <Sharp className={"accidental-staff"} />
+        <Sharp className="staff-glyph" fillColor={fillColor} />
       ) : (
-        <Natural className={"accidental-staff"} />
+        <Natural className="staff-glyph" fillColor={fillColor} />
       )}
     </div>
   );
@@ -65,9 +67,16 @@ Accidental.propTypes = {
   row: PropTypes.number.isRequired,
   col: PropTypes.number.isRequired,
   alt: PropTypes.bool,
+  fillColor: PropTypes.string,
 };
 
-const NoteDisplay = ({ note }) => {
+const NoteDisplay = ({ note, synth }) => {
+  const [colorR, setColorR] = useState(0);
+
+  useInterval(() => {
+    setColorR(colorR + 0.04);
+  }, 15);
+
   return (
     <>
       <Accidental
@@ -75,14 +84,21 @@ const NoteDisplay = ({ note }) => {
         row={note.row}
         col={note.col}
         alt={note.alt}
+        fillColor={`rgb(${255 * Math.abs(Math.sin(colorR + 0.01))}, 0, 0)`}
       />
-      <Notehead row={note.row} col={note.col} alt={note.alt} />{" "}
+      <Notehead
+        row={note.row}
+        col={note.col}
+        alt={note.alt}
+        fillColor={`rgb(${255 * Math.abs(Math.sin(colorR + 0.01))}, 0, 0)`}
+      />
     </>
   );
 };
 
 NoteDisplay.propTypes = {
   note: PropTypes.object,
+  synth: PropTypes.object,
 };
 
 export default NoteDisplay;

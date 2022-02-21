@@ -1,18 +1,37 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
+// import useInterval from "./Interval";
 import { ClickableGrandStaff, Note, Toolbar } from "./index";
 
 const Editor = ({ synth }) => {
   const [noteList, setNoteList] = useState([]);
   const [noteGrid, setNoteGrid] = useState({});
   const [activeAcc, setActiveAcc] = useState(0);
-
+  const [volumes, setVolumes] = useState([]);
+  // https://tonejs.github.io/docs/14.7.77/Volume
+  // see connecting an oscillator to the tone object
+  // possibly in the _voices array
   const clearNoteList = () => {
     setNoteList([]);
     setNoteGrid({});
     synth.releaseAll();
   };
+
+  // useInterval(() => {
+  // if (synth && synth._voices) {
+  // if (volumes) {
+  // setVolumes(volumes.map((vol) => vol + 0.4));
+  // }
+  // synth._voices.forEach((voice, idx) => {
+  // if (voice && idx < volumes.length) {
+  // voice.volume.value = -60 * Math.abs(Math.sin(volumes[idx]));
+  // }
+  // console.log(voice.volume.value);
+  // });
+  // console.log(volumes);
+  // }
+  // }, 150);
 
   const toggleNote = (noteStr) => {
     const newNote = new Note(noteStr, activeAcc);
@@ -39,8 +58,12 @@ const Editor = ({ synth }) => {
         ];
       }
 
-      if (synth) synth.triggerRelease(newNote.string);
-      // console.log("note toggled off: " + noteList[loc].row);
+      if (synth) {
+        console.log(synth._voices[0].volume);
+        synth.triggerRelease(newNote.string);
+        setVolumes([...volumes.slice(0, loc), ...volumes.slice(loc + 1)]);
+        // console.log("note toggled off: " + noteList[loc].row);
+      }
     } else {
       if (newNoteGrid[newNote.row]) {
         newNoteGrid[newNote.row].push(newNote.col);
@@ -48,8 +71,11 @@ const Editor = ({ synth }) => {
         newNoteGrid[newNote.row] = [newNote.col];
       }
 
-      if (synth) synth.triggerAttack(newNote.string);
-      // console.log("note toggled on: " + newNote.row);
+      if (synth) {
+        // console.log("note toggled on: " + newNote.row);
+        synth.triggerAttack(newNote.string);
+        setVolumes([...volumes, 0.2]);
+      }
     }
 
     setNoteGrid(newNoteGrid);
@@ -62,6 +88,7 @@ const Editor = ({ synth }) => {
         noteList={noteList}
         toggleNote={toggleNote}
         activeAcc={activeAcc}
+        synth={synth}
       />
       <Toolbar
         activeAcc={activeAcc}

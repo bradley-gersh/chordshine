@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 // import { Notehead } from "./Icons";
 import { default as NoteDisplay } from "./NoteDisplay";
 
-const noteToGrid = (note /*, noteList, noteGrid, toggleNote*/) => {
+const noteToGrid = (note, synth /*, noteList, noteGrid, toggleNote*/) => {
   // given a note string, returns the component
   // to add to the NoteColumn.
   // Stretch goal: Handle clusters nicely
@@ -16,19 +16,20 @@ const noteToGrid = (note /*, noteList, noteGrid, toggleNote*/) => {
   // Neighbor below = one row higher, same column.
   // if any pitch has a neighbor below with alt===false, alt=true. Else alt=false.
 
-  return <NoteDisplay note={note} key={note.string} />;
+  return <NoteDisplay note={note} key={note.string} synth={synth} />;
 };
 
-const NoteColumn = ({ noteList }) => {
+const NoteColumn = ({ noteList, synth }) => {
   return (
     <div className={"note-column"}>
-      {noteList.map((note) => noteToGrid(note))}
+      {noteList.map((note) => noteToGrid(note, synth))}
     </div>
   );
 };
 
 NoteColumn.propTypes = {
   noteList: PropTypes.array,
+  synth: PropTypes.object,
   // noteGrid: PropTypes.object,
   // toggleNote: PropTypes.func,
 };

@@ -71,13 +71,14 @@
 
 .note-column {
   display: grid;
+  pointer-events: none;
   grid-template-columns: 20px 20px 20px;
   grid-template-rows: 12px repeat(9, 3px 10px) 4px 8px repeat(8, 3px 10px) 3px;
   position: absolute;
   top: 4.2rem;
   left: 50%;
   transform: translate(-50%, 0%);
-  z-index: -1;
+  z-index: 1;
 }
 
 .accidental-button {
