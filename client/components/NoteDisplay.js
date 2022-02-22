@@ -84,13 +84,13 @@ const NoteDisplay = ({ note }) => {
         row={note.row}
         col={note.col}
         alt={note.alt}
-        fillColor={`rgb(${255 * Math.abs(Math.sin(colorR + 0.01))}, 0, 0)`}
+        fillColor={`rgb(0, 120, ${255 * Math.abs(Math.sin(colorR + 0.01))})`}
       />
       <Notehead
         row={note.row}
         col={note.col}
         alt={note.alt}
-        fillColor={`rgb(${255 * Math.abs(Math.sin(colorR + 0.01))}, 0, 0)`}
+        fillColor={`rgb(0, 120, ${255 * Math.abs(Math.sin(colorR + 0.01))})`}
       />
     </>
   );

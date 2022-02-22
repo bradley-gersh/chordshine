@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-// import useInterval from "./Interval";
+import useInterval from "./Interval";
 import { ClickableGrandStaff, Note, Toolbar } from "./index";
 
 const Editor = ({ synth }) => {
@@ -18,20 +18,21 @@ const Editor = ({ synth }) => {
     synth.releaseAll();
   };
 
-  // useInterval(() => {
-  // if (synth && synth._voices) {
-  // if (volumes) {
-  // setVolumes(volumes.map((vol) => vol + 0.4));
-  // }
-  // synth._voices.forEach((voice, idx) => {
-  // if (voice && idx < volumes.length) {
-  // voice.volume.value = -60 * Math.abs(Math.sin(volumes[idx]));
-  // }
-  // console.log(voice.volume.value);
-  // });
-  // console.log(volumes);
-  // }
-  // }, 150);
+  useInterval(() => {
+    if (synth) {
+      synth._activeVoices.forEach((voice) => {
+        voice.voice.volume.rampTo(Math.random() * 50 - 50, 1);
+      });
+    }
+    // if (synth && volumes) {
+    // volumes.forEach((vol, idx) => {
+    // const newTime = Math.random();
+    // const newVol = 120 * Math.random() - 100;
+    // console.log(`${idx}: ${newVol}, ${newTime}`);
+    // vol.volume.rampTo(newVol, newTime);
+    // });
+    // }
+  }, 3000);
 
   const toggleNote = (noteStr) => {
     const newNote = new Note(noteStr, activeAcc);
@@ -59,7 +60,6 @@ const Editor = ({ synth }) => {
       }
 
       if (synth) {
-        console.log(synth._voices[0].volume);
         synth.triggerRelease(newNote.string);
         setVolumes([...volumes.slice(0, loc), ...volumes.slice(loc + 1)]);
         // console.log("note toggled off: " + noteList[loc].row);
@@ -74,7 +74,12 @@ const Editor = ({ synth }) => {
       if (synth) {
         // console.log("note toggled on: " + newNote.row);
         synth.triggerAttack(newNote.string);
-        setVolumes([...volumes, 0.2]);
+        // const newVol = new tonejs.Volume(-30);
+        // console.log(synth._activeVoices[0].voice.volume.value);
+        // synth._activeVoices[synth.activeVoices - 1].voice.volume.rampTo(-10, 3);
+        // synth._availableVoices[-1].chain(newVol, tonejs.Master);
+        const newVol = 0.2; // a placeholder
+        setVolumes([...volumes, newVol]);
       }
     }
 
