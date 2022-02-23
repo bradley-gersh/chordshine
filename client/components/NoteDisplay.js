@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { default as useInterval } from "./Interval.js";
 import { NoteheadIcon, Flat, Natural, Sharp } from "./Icons";
+import { MIN_VOL } from "./constants";
 
 const Notehead = ({ row, col, alt, fillColor }) => {
   const style = {
@@ -71,10 +72,11 @@ Accidental.propTypes = {
 };
 
 const NoteDisplay = ({ note }) => {
-  const [colorR, setColorR] = useState(0);
+  const [color, setColor] = useState(0);
 
   useInterval(() => {
-    setColorR(colorR + 0.04);
+    const colorParam = (255 * (note.volume.value - MIN_VOL)) / -MIN_VOL;
+    setColor(colorParam);
   }, 15);
 
   return (
@@ -84,13 +86,13 @@ const NoteDisplay = ({ note }) => {
         row={note.row}
         col={note.col}
         alt={note.alt}
-        fillColor={`rgb(0, 120, ${255 * Math.abs(Math.sin(colorR + 0.01))})`}
+        fillColor={`rgb(${color / 4}, ${color}, ${color})`}
       />
       <Notehead
         row={note.row}
         col={note.col}
         alt={note.alt}
-        fillColor={`rgb(0, 120, ${255 * Math.abs(Math.sin(colorR + 0.01))})`}
+        fillColor={`rgb(${color / 4}, ${color}, ${color})`}
       />
     </>
   );
@@ -98,7 +100,6 @@ const NoteDisplay = ({ note }) => {
 
 NoteDisplay.propTypes = {
   note: PropTypes.object,
-  // synth: PropTypes.object,
 };
 
 export default NoteDisplay;

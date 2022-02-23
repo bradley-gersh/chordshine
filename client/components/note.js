@@ -1,18 +1,3 @@
-// import React, { useState } from "react";
-// import PropTypes from "prop-types";
-
-// import { Notehead } from "./Icons";
-
-// const Note = ({ noteStr, noteList, noteGrid }) => {
-//   return <Notehead row={row} col={col} alt={alt}></Notehead>;
-// };
-
-// Note.propTypes = {
-//   noteStr: PropTypes.string.isRequired,
-//   noteList: PropTypes.array,
-//   noteGrid: PropTypes.object,
-// };
-
 export default class Note {
   constructor(noteStr, accidental) {
     this.string = toNoteString(noteStr, accidental);
@@ -22,7 +7,7 @@ export default class Note {
       ? noteStr.slice(2)
       : noteStr.slice(1);
     this.midiNote = toMidi(this.diaPc, this.octave, this.accidental);
-    this.vol = 100;
+    this.volume = undefined;
     this.row = toNoteRow(this.diaPc, this.octave);
     this.col = 2;
     this.alt = false;
