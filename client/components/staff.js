@@ -30,16 +30,16 @@ const StaffLedgerLineUnit = () => (
 const StaffSlot = ({ clef, id, type, toggleNote }) => {
   const isNote = clef != undefined && id != undefined ? true : false;
   const note = isNote ? staffNoteRefs[clef][id] : undefined;
-  const [isSounding, setIsSounding] = useState(false);
+  // const [isSounding, setIsSounding] = useState(false);
 
   return (
     <div
-      className={"staff-note" + (isSounding ? " sounding" : "")}
+      className={"staff-note" /* + (isSounding ? " sounding" : "")*/}
       onClick={() => {
         if (isNote) {
           if (toggleNote) {
             toggleNote(note.string);
-            setIsSounding(!isSounding);
+            // setIsSounding(!isSounding);
           } else {
             console.error("Not a toggleNote event.");
           }
