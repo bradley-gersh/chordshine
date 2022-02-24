@@ -1,6 +1,6 @@
 const MIN_VOL = -50; // dB range is -50 to 0.
-const RAMP_TIME_SEC = 0.05; // (sec) 1 second
-const CHANGE_TIME_MSEC = 300; // (msec) 3 seconds
+const RAMP_TIME_SEC = 0.3; // (sec) 1 second
+const CHANGE_TIME_MSEC = 500; // (msec) 3 seconds
 
 export { MIN_VOL, RAMP_TIME_SEC, CHANGE_TIME_MSEC };
 

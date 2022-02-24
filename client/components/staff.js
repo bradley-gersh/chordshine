@@ -23,6 +23,10 @@ const StaffLineUnit = () => <div className={"staff-line-unit"}></div>;
 
 const StaffSpaceUnit = () => <div className={"staff-space-unit"}></div>;
 
+const StaffLedgerLineUnit = () => (
+  <div className={"staff-ledger-line-unit"}></div>
+);
+
 const StaffSlot = ({ clef, id, type, toggleNote }) => {
   const isNote = clef != undefined && id != undefined ? true : false;
   const note = isNote ? staffNoteRefs[clef][id] : undefined;
@@ -42,13 +46,20 @@ const StaffSlot = ({ clef, id, type, toggleNote }) => {
         }
       }}
     >
-      {type == "staff-line" ? (
+      {type === "staff-line" ? (
         <>
           <StaffSpaceUnit />
           <StaffLineUnit />
           <StaffSpaceUnit />
         </>
+      ) : type === "staff-ledger-line" ? (
+        <>
+          <StaffSpaceUnit />
+          <StaffLedgerLineUnit />
+          <StaffSpaceUnit />
+        </>
       ) : (
+        // type === "staff-space"
         <>
           <StaffSpaceUnit />
           <StaffSpaceUnit />
@@ -93,7 +104,13 @@ const Staff = ({ clef, hasLines, toggleNote }) => {
         <StaffSlot
           clef={clef}
           id={id}
-          type={hasLines && (id + 1) % 2 ? "staff-line" : "staff-space"}
+          type={
+            hasLines
+              ? (id + 1) % 2
+                ? "staff-line"
+                : "staff-space"
+              : "staff-ledger-line"
+          }
           toggleNote={toggleNote}
           key={id}
         />

@@ -61,6 +61,11 @@
   height: 2px;
 }
 
+.staff-ledger-line-unit {
+  background-color: black;
+  height: 3px;
+}
+
 .staff-note:hover {
   background-color: rgba(0, 139, 139, 0.3);
 }
