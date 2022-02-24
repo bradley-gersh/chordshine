@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import { Treble, Bass } from "./Icons";
@@ -30,16 +30,14 @@ const StaffLedgerLineUnit = () => (
 const StaffSlot = ({ clef, id, type, toggleNote }) => {
   const isNote = clef != undefined && id != undefined ? true : false;
   const note = isNote ? staffNoteRefs[clef][id] : undefined;
-  // const [isSounding, setIsSounding] = useState(false);
 
   return (
     <div
-      className={"staff-note" /* + (isSounding ? " sounding" : "")*/}
+      className={"staff-note"}
       onClick={() => {
         if (isNote) {
           if (toggleNote) {
             toggleNote(note.string);
-            // setIsSounding(!isSounding);
           } else {
             console.error("Not a toggleNote event.");
           }
@@ -55,7 +53,7 @@ const StaffSlot = ({ clef, id, type, toggleNote }) => {
       ) : type === "staff-ledger-line" ? (
         <>
           <StaffSpaceUnit />
-          <StaffLedgerLineUnit />
+          <StaffLedgerLineUnit visible={false} />
           <StaffSpaceUnit />
         </>
       ) : (
