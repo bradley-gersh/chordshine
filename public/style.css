@@ -65,11 +65,11 @@
   height: 3px;
 }
 
-.staff-note:hover {
+.staff-slot:hover {
   background-color: rgba(0, 139, 139, 0.3);
 }
 
-.staff-note:hover .staff-ledger-line-unit {
+.staff-slot:hover .staff-ledger-line-unit {
   width: 1.5rem;
   background-color: black;
   position: relative;

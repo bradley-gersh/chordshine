@@ -33,7 +33,7 @@ const StaffSlot = ({ clef, id, type, toggleNote }) => {
 
   return (
     <div
-      className={"staff-note"}
+      className={"staff-slot"}
       onClick={() => {
         if (isNote) {
           if (toggleNote) {
