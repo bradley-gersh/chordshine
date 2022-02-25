@@ -5,6 +5,7 @@ import { Treble, Bass } from "./Icons";
 import NoteColumn from "./NoteColumn";
 import Note from "./Note";
 
+// Hardcoded staff data
 const clefs = ["supertreble", "treble", "midrange", "bass", "subbass"];
 
 const noteRefs = {
@@ -20,15 +21,6 @@ const staffNoteRefs = Object.entries(noteRefs).reduce((acc, el) => {
   return acc;
 }, {});
 
-const range9 = [...Array(9).keys()];
-const staffIds = {
-  supertreble: range9.map((num) => num + 11).reverse(), // 11..19
-  treble: range9.map((num) => num + 2).reverse(), // 2..10
-  midrange: [1, 0, -1], // 1..-1
-  bass: range9.map((num) => -(num + 2)), //  -2..-10
-  subbass: range9.map((num) => -(num + 11)), // -11..-19
-};
-
 const staffIdOffsets = {
   supertreble: 11,
   treble: 2,
@@ -36,6 +28,17 @@ const staffIdOffsets = {
   bass: -2,
   subbass: -11,
 };
+
+const range9 = [...Array(9).keys()];
+const staffIds = {
+  supertreble: range9.map((num) => num + staffIdOffsets.supertreble).reverse(), // 11..19
+  treble: range9.map((num) => num + staffIdOffsets.treble).reverse(), // 2..10
+  midrange: [1, 0, -1], // 1..-1
+  bass: range9.map((num) => -num + staffIdOffsets.bass), //  -2..-10
+  subbass: range9.map((num) => -num + staffIdOffsets.subbass), // -11..-19
+};
+
+// Staff components
 
 const StaffLineUnit = () => <div className={"staff-line-unit"}></div>;
 
