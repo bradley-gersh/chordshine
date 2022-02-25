@@ -43,6 +43,9 @@ const StaffSlot = ({ clef, id, type, toggleNote }) => {
           }
         }
       }}
+      onMouseOver={() => {
+        console.log(`mouseover ${id}`);
+      }}
     >
       {type === "staff-line" ? (
         <>
@@ -89,16 +92,20 @@ const Clef = ({ clef }) => {
   );
 };
 
-const fullStaffIds = [...Array(9).keys()].reverse();
-const gapIds = [...Array(3).keys()].reverse();
+const range9 = [...Array(9).keys()];
+const staffIds = {
+  supertreble: range9.map((num) => num + 11).reverse(), // 11..19
+  treble: range9.map((num) => num + 2).reverse(), // 2..10
+  midrange: [1, 0, -1],
+  bass: range9.map((num) => -(num + 2)),
+  subbass: range9.map((num) => -(num + 11)),
+};
 
 const Staff = ({ clef, hasLines, toggleNote }) => {
-  const staffIds = clef == "midrange" ? gapIds : fullStaffIds;
-
   return (
     <div className={"staff"}>
       <Clef clef={clef} />
-      {staffIds.map((id) => (
+      {staffIds[clef].map((id) => (
         <StaffSlot
           clef={clef}
           id={id}
