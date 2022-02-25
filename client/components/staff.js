@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import { Treble, Bass } from "./Icons";
@@ -6,20 +6,24 @@ import NoteColumn from "./NoteColumn";
 import Note from "./Note";
 
 // Hardcoded staff data
+
 const clefs = ["supertreble", "treble", "midrange", "bass", "subbass"];
 
-const noteRefs = {
-  supertreble: ["G5", "A5", "B5", "C6", "D6", "E6", "F6", "G6", "A6"],
-  treble: ["E4", "F4", "G4", "A4", "B4", "C5", "D5", "E5", "F5"],
-  midrange: ["B3", "C4", "D4"],
-  bass: ["G2", "A2", "B2", "C3", "D3", "E3", "F3", "G3", "A3"].reverse(),
-  subbass: ["E1", "F1", "G1", "A1", "B1", "C2", "D2", "E2", "F2"].reverse(),
+const staffNoteRefs = {
+  supertreble: ["G5", "A5", "B5", "C6", "D6", "E6", "F6", "G6", "A6"].map(
+    (note) => new Note(note)
+  ),
+  treble: ["E4", "F4", "G4", "A4", "B4", "C5", "D5", "E5", "F5"].map(
+    (note) => new Note(note)
+  ),
+  midrange: ["B3", "C4", "D4"].map((note) => new Note(note)),
+  bass: ["G2", "A2", "B2", "C3", "D3", "E3", "F3", "G3", "A3"]
+    .reverse()
+    .map((note) => new Note(note)),
+  subbass: ["E1", "F1", "G1", "A1", "B1", "C2", "D2", "E2", "F2"]
+    .reverse()
+    .map((note) => new Note(note)),
 };
-
-const staffNoteRefs = Object.entries(noteRefs).reduce((acc, el) => {
-  acc[el[0]] = el[1].map((note) => new Note(note));
-  return acc;
-}, {});
 
 const staffIdOffsets = {
   supertreble: 11,
