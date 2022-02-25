@@ -5,6 +5,8 @@ import { Treble, Bass } from "./Icons";
 import NoteColumn from "./NoteColumn";
 import Note from "./Note";
 
+const clefs = ["supertreble", "treble", "midrange", "bass", "subbass"];
+
 const noteRefs = {
   supertreble: ["G5", "A5", "B5", "C6", "D6", "E6", "F6", "G6", "A6"],
   treble: ["E4", "F4", "G4", "A4", "B4", "C5", "D5", "E5", "F5"],
@@ -43,7 +45,7 @@ const StaffLedgerLineUnit = () => (
   <div className={"staff-ledger-line-unit"}></div>
 );
 
-const StaffSlot = ({ clef, id, type, toggleNote, setOverId }) => {
+const StaffSlot = ({ clef, id, type, toggleNote, overId, setOverId }) => {
   const isNote = clef != undefined && id != undefined ? true : false;
   const note = !isNote
     ? undefined
@@ -65,6 +67,7 @@ const StaffSlot = ({ clef, id, type, toggleNote, setOverId }) => {
       }}
       onMouseOver={() => {
         setOverId(id);
+        console.log(overId);
       }}
     >
       {type === "staff-line" ? (
@@ -95,6 +98,7 @@ StaffSlot.propTypes = {
   clef: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   type: PropTypes.string,
+  overId: PropTypes.number.isRequired,
   setOverId: PropTypes.func.isRequired,
   toggleNote: PropTypes.func,
 };
@@ -113,7 +117,7 @@ const Clef = ({ clef }) => {
   );
 };
 
-const Staff = ({ clef, hasLines, toggleNote, setOverId }) => {
+const Staff = ({ clef, hasLines, toggleNote, overId, setOverId }) => {
   return (
     <div className={"staff"}>
       <Clef clef={clef} />
@@ -129,6 +133,7 @@ const Staff = ({ clef, hasLines, toggleNote, setOverId }) => {
               : "staff-ledger-line"
           }
           toggleNote={toggleNote}
+          overId={overId}
           setOverId={setOverId}
           key={id}
         />
@@ -141,6 +146,7 @@ Staff.propTypes = {
   clef: PropTypes.string.isRequired,
   hasLines: PropTypes.bool.isRequired,
   activeAcc: PropTypes.number.isRequired,
+  overId: PropTypes.number.isRequired,
   setOverId: PropTypes.func.isRequired,
   toggleNote: PropTypes.func.isRequired,
 };
@@ -152,47 +158,19 @@ Clef.propTypes = {
 const GrandStaff = ({ toggleNote, activeAcc }) => {
   const [overId, setOverId] = useState(0);
 
-  useEffect(() => {
-    console.log(overId);
-  });
-
   return (
     <div className={"grand-staff"}>
-      <Staff
-        clef={"supertreble"}
-        toggleNote={toggleNote}
-        hasLines={false}
-        activeAcc={activeAcc}
-        setOverId={setOverId}
-      />
-      <Staff
-        clef={"treble"}
-        toggleNote={toggleNote}
-        hasLines={true}
-        activeAcc={activeAcc}
-        setOverId={setOverId}
-      />
-      <Staff
-        clef={"midrange"}
-        toggleNote={toggleNote}
-        hasLines={false}
-        activeAcc={activeAcc}
-        setOverId={setOverId}
-      />
-      <Staff
-        clef={"bass"}
-        toggleNote={toggleNote}
-        hasLines={true}
-        activeAcc={activeAcc}
-        setOverId={setOverId}
-      />
-      <Staff
-        clef={"subbass"}
-        toggleNote={toggleNote}
-        hasLines={false}
-        activeAcc={activeAcc}
-        setOverId={setOverId}
-      />
+      {clefs.map((clefName, idx) => (
+        <Staff
+          key={clefName}
+          clef={clefName}
+          hasLines={!!(idx % 2)}
+          toggleNote={toggleNote}
+          activeAcc={activeAcc}
+          overId={overId}
+          setOverId={setOverId}
+        />
+      ))}
     </div>
   );
 };
