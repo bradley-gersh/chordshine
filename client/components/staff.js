@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import { Treble, Bass } from "./Icons";
@@ -43,7 +43,7 @@ const StaffLedgerLineUnit = () => (
   <div className={"staff-ledger-line-unit"}></div>
 );
 
-const StaffSlot = ({ clef, id, type, toggleNote }) => {
+const StaffSlot = ({ clef, id, type, toggleNote, setOverId }) => {
   const isNote = clef != undefined && id != undefined ? true : false;
   const note = !isNote
     ? undefined
@@ -64,7 +64,7 @@ const StaffSlot = ({ clef, id, type, toggleNote }) => {
         }
       }}
       onMouseOver={() => {
-        console.log(`mouseover ${id}`);
+        setOverId(id);
       }}
     >
       {type === "staff-line" ? (
@@ -95,6 +95,7 @@ StaffSlot.propTypes = {
   clef: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   type: PropTypes.string,
+  setOverId: PropTypes.func.isRequired,
   toggleNote: PropTypes.func,
 };
 
@@ -112,7 +113,7 @@ const Clef = ({ clef }) => {
   );
 };
 
-const Staff = ({ clef, hasLines, toggleNote }) => {
+const Staff = ({ clef, hasLines, toggleNote, setOverId }) => {
   return (
     <div className={"staff"}>
       <Clef clef={clef} />
@@ -128,6 +129,7 @@ const Staff = ({ clef, hasLines, toggleNote }) => {
               : "staff-ledger-line"
           }
           toggleNote={toggleNote}
+          setOverId={setOverId}
           key={id}
         />
       ))}
@@ -139,47 +141,61 @@ Staff.propTypes = {
   clef: PropTypes.string.isRequired,
   hasLines: PropTypes.bool.isRequired,
   activeAcc: PropTypes.number.isRequired,
-  toggleNote: PropTypes.func,
+  setOverId: PropTypes.func.isRequired,
+  toggleNote: PropTypes.func.isRequired,
 };
 
 Clef.propTypes = {
   clef: PropTypes.string.isRequired,
 };
 
-const GrandStaff = ({ toggleNote, activeAcc }) => (
-  <div className={"grand-staff"}>
-    <Staff
-      clef={"supertreble"}
-      toggleNote={toggleNote}
-      hasLines={false}
-      activeAcc={activeAcc}
-    />
-    <Staff
-      clef={"treble"}
-      toggleNote={toggleNote}
-      hasLines={true}
-      activeAcc={activeAcc}
-    />
-    <Staff
-      clef={"midrange"}
-      toggleNote={toggleNote}
-      hasLines={false}
-      activeAcc={activeAcc}
-    />
-    <Staff
-      clef={"bass"}
-      toggleNote={toggleNote}
-      hasLines={true}
-      activeAcc={activeAcc}
-    />
-    <Staff
-      clef={"subbass"}
-      toggleNote={toggleNote}
-      hasLines={false}
-      activeAcc={activeAcc}
-    />
-  </div>
-);
+const GrandStaff = ({ toggleNote, activeAcc }) => {
+  const [overId, setOverId] = useState(0);
+
+  useEffect(() => {
+    console.log(overId);
+  });
+
+  return (
+    <div className={"grand-staff"}>
+      <Staff
+        clef={"supertreble"}
+        toggleNote={toggleNote}
+        hasLines={false}
+        activeAcc={activeAcc}
+        setOverId={setOverId}
+      />
+      <Staff
+        clef={"treble"}
+        toggleNote={toggleNote}
+        hasLines={true}
+        activeAcc={activeAcc}
+        setOverId={setOverId}
+      />
+      <Staff
+        clef={"midrange"}
+        toggleNote={toggleNote}
+        hasLines={false}
+        activeAcc={activeAcc}
+        setOverId={setOverId}
+      />
+      <Staff
+        clef={"bass"}
+        toggleNote={toggleNote}
+        hasLines={true}
+        activeAcc={activeAcc}
+        setOverId={setOverId}
+      />
+      <Staff
+        clef={"subbass"}
+        toggleNote={toggleNote}
+        hasLines={false}
+        activeAcc={activeAcc}
+        setOverId={setOverId}
+      />
+    </div>
+  );
+};
 
 GrandStaff.propTypes = {
   toggleNote: PropTypes.func,
