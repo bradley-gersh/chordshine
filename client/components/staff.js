@@ -5,18 +5,34 @@ import { Treble, Bass } from "./Icons";
 import NoteColumn from "./NoteColumn";
 import Note from "./Note";
 
-const supTrebNoteRefs = ["G5", "A5", "B5", "C6", "D6", "E6", "F6", "G6", "A6"];
-const trebleNoteRefs = ["E4", "F4", "G4", "A4", "B4", "C5", "D5", "E5", "F5"];
-const midRangeNoteRefs = ["B3", "C4", "D4"];
-const bassNoteRefs = ["G2", "A2", "B2", "C3", "D3", "E3", "F3", "G3", "A3"];
-const subBassNoteRefs = ["E1", "F1", "G1", "A1", "B1", "C2", "D2", "E2", "F2"];
+const noteRefs = {
+  supertreble: ["G5", "A5", "B5", "C6", "D6", "E6", "F6", "G6", "A6"],
+  treble: ["E4", "F4", "G4", "A4", "B4", "C5", "D5", "E5", "F5"],
+  midrange: ["B3", "C4", "D4"],
+  bass: ["G2", "A2", "B2", "C3", "D3", "E3", "F3", "G3", "A3"].reverse(),
+  subbass: ["E1", "F1", "G1", "A1", "B1", "C2", "D2", "E2", "F2"].reverse(),
+};
 
-const staffNoteRefs = {
-  supertreble: supTrebNoteRefs.map((note) => new Note(note)),
-  treble: trebleNoteRefs.map((note) => new Note(note)),
-  midrange: midRangeNoteRefs.map((note) => new Note(note)),
-  bass: bassNoteRefs.map((note) => new Note(note)),
-  subbass: subBassNoteRefs.map((note) => new Note(note)),
+const staffNoteRefs = Object.entries(noteRefs).reduce((acc, el) => {
+  acc[el[0]] = el[1].map((note) => new Note(note));
+  return acc;
+}, {});
+
+const range9 = [...Array(9).keys()];
+const staffIds = {
+  supertreble: range9.map((num) => num + 11).reverse(), // 11..19
+  treble: range9.map((num) => num + 2).reverse(), // 2..10
+  midrange: [1, 0, -1], // 1..-1
+  bass: range9.map((num) => -(num + 2)), //  -2..-10
+  subbass: range9.map((num) => -(num + 11)), // -11..-19
+};
+
+const staffIdOffsets = {
+  supertreble: 11,
+  treble: 2,
+  midrange: -1,
+  bass: -2,
+  subbass: -11,
 };
 
 const StaffLineUnit = () => <div className={"staff-line-unit"}></div>;
@@ -29,7 +45,11 @@ const StaffLedgerLineUnit = () => (
 
 const StaffSlot = ({ clef, id, type, toggleNote }) => {
   const isNote = clef != undefined && id != undefined ? true : false;
-  const note = isNote ? staffNoteRefs[clef][id] : undefined;
+  const note = !isNote
+    ? undefined
+    : clef === "supertreble" || clef === "treble" || clef == "midrange"
+    ? staffNoteRefs[clef][id - staffIdOffsets[clef]]
+    : staffNoteRefs[clef][-(id - staffIdOffsets[clef])];
 
   return (
     <div
@@ -90,15 +110,6 @@ const Clef = ({ clef }) => {
       )}
     </div>
   );
-};
-
-const range9 = [...Array(9).keys()];
-const staffIds = {
-  supertreble: range9.map((num) => num + 11).reverse(), // 11..19
-  treble: range9.map((num) => num + 2).reverse(), // 2..10
-  midrange: [1, 0, -1],
-  bass: range9.map((num) => -(num + 2)),
-  subbass: range9.map((num) => -(num + 11)),
 };
 
 const Staff = ({ clef, hasLines, toggleNote }) => {

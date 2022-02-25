@@ -29,8 +29,8 @@ function toNoteString(noteStr, accidental) {
 function toNoteRow(diaPc, octave) {
   const C4row = -21;
   const fromC4 = 7 * (octave - 4) + diaNum(diaPc);
-  console.log(C4row - fromC4);
-  console.log(octave, diaPc);
+  // console.log(C4row - fromC4);
+  // console.log(octave, diaPc);
 
   return C4row - fromC4;
 }
