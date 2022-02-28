@@ -45,9 +45,24 @@ const StaffLineUnit = () => <div className={"staff-line-unit"}></div>;
 
 const StaffSpaceUnit = () => <div className={"staff-space-unit"}></div>;
 
-const StaffLedgerLineUnit = () => (
-  <div className={"staff-ledger-line-unit"}></div>
+const StaffLedgerLineUnit = ({ id, overId }) => (
+  <div
+    className={
+      "staff-ledger-line-unit" +
+      (id % 2 === 0 &&
+      ((id === 0 && overId === 0) ||
+        (id > 0 && overId >= id) ||
+        (id < 0 && overId <= id))
+        ? " visible"
+        : "")
+    }
+  ></div>
 );
+
+StaffLedgerLineUnit.propTypes = {
+  id: PropTypes.number,
+  overId: PropTypes.number,
+};
 
 const StaffSlot = ({ clef, id, type, toggleNote, overId, setOverId }) => {
   const isNote = clef != undefined && id != undefined ? true : false;
@@ -71,7 +86,7 @@ const StaffSlot = ({ clef, id, type, toggleNote, overId, setOverId }) => {
       }}
       onMouseOver={() => {
         setOverId(id);
-        console.log(overId);
+        // console.log(overId);
       }}
     >
       {type === "staff-line" ? (
@@ -83,7 +98,7 @@ const StaffSlot = ({ clef, id, type, toggleNote, overId, setOverId }) => {
       ) : type === "staff-ledger-line" ? (
         <>
           <StaffSpaceUnit />
-          <StaffLedgerLineUnit visible={false} />
+          <StaffLedgerLineUnit id={id} overId={overId} />
           <StaffSpaceUnit />
         </>
       ) : (

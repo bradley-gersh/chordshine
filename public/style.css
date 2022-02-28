@@ -69,9 +69,9 @@
   background-color: rgba(0, 139, 139, 0.3);
 }
 
-.staff-slot:hover .staff-ledger-line-unit {
+.staff-ledger-line-unit.visible {
   width: 1.5rem;
-  background-color: black;
+  background-color: gray;
   position: relative;
   left: 50%;
   top: 1.5px;
