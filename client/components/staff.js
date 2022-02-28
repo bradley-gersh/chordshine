@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import { Treble, Bass } from "./Icons";
+import { NoteheadIcon, Treble, Bass } from "./Icons";
 import NoteColumn from "./NoteColumn";
 import Note from "./Note";
 
@@ -41,11 +41,50 @@ const staffIds = {
 
 // Staff components
 
-const StaffLineUnit = () => <div className={"staff-line-unit"}></div>;
+const MouseoverNote = ({ activeAcc, visible }) => (
+  <div>{visible === true ? <NoteheadIcon fillColor="gray" /> : <></>}</div>
+);
 
-const StaffSpaceUnit = () => <div className={"staff-space-unit"}></div>;
+MouseoverNote.propTypes = {
+  activeAcc: PropTypes.number,
+  visible: PropTypes.bool,
+};
 
-const StaffLedgerLineUnit = ({ id, overId }) => (
+const StaffLineUnit = ({ id, overId, activeAcc }) => {
+  if (id === overId) {
+    console.log(`id ${id} moused over`);
+  }
+  return (
+    <div className={"staff-line-unit"}>
+      <MouseoverNote activeAcc={activeAcc} visible={id === overId} />
+    </div>
+  );
+};
+
+StaffLineUnit.propTypes = {
+  id: PropTypes.number,
+  overId: PropTypes.number,
+  activeAcc: PropTypes.number,
+};
+
+const StaffSpaceUnit = ({ id, overId, activeAcc }) => {
+  return (
+    <div className={"staff-space-unit"}>
+      <MouseoverNote
+        acc={activeAcc}
+        visible={id !== undefined && id === overId}
+      />
+    </div>
+  );
+};
+
+StaffSpaceUnit.propTypes = {
+  id: PropTypes.number,
+  overId: PropTypes.number,
+  activeAcc: PropTypes.number,
+};
+
+const StaffLedgerLineUnit = ({ id, overId, activeAcc }) => (
   <div
     className={
       "staff-ledger-line-unit" +
@@ -56,15 +95,26 @@ const StaffLedgerLineUnit = ({ id, overId }) => (
         ? " visible"
         : "")
     }
-  ></div>
+  >
+    <MouseoverNote acc={activeAcc} visible={id === overId} />
+  </div>
 );
 
 StaffLedgerLineUnit.propTypes = {
   id: PropTypes.number,
   overId: PropTypes.number,
+  activeAcc: PropTypes.number,
 };
 
-const StaffSlot = ({ clef, id, type, toggleNote, overId, setOverId }) => {
+const StaffSlot = ({
+  activeAcc,
+  clef,
+  id,
+  type,
+  toggleNote,
+  overId,
+  setOverId,
+}) => {
   const isNote = clef != undefined && id != undefined ? true : false;
   const note = !isNote
     ? undefined
@@ -92,20 +142,20 @@ const StaffSlot = ({ clef, id, type, toggleNote, overId, setOverId }) => {
       {type === "staff-line" ? (
         <>
           <StaffSpaceUnit />
-          <StaffLineUnit />
+          <StaffLineUnit activeAcc={activeAcc} id={id} overId={overId} />
           <StaffSpaceUnit />
         </>
       ) : type === "staff-ledger-line" ? (
         <>
           <StaffSpaceUnit />
-          <StaffLedgerLineUnit id={id} overId={overId} />
+          <StaffLedgerLineUnit activeAcc={activeAcc} id={id} overId={overId} />
           <StaffSpaceUnit />
         </>
       ) : (
         // type === "staff-space"
         <>
           <StaffSpaceUnit />
-          <StaffSpaceUnit />
+          <StaffSpaceUnit activeAcc={activeAcc} id={id} overId={overId} />
           <StaffSpaceUnit />
         </>
       )}
@@ -114,6 +164,7 @@ const StaffSlot = ({ clef, id, type, toggleNote, overId, setOverId }) => {
 };
 
 StaffSlot.propTypes = {
+  activeAcc: PropTypes.number.isRequired,
   clef: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   type: PropTypes.string,
@@ -136,12 +187,20 @@ const Clef = ({ clef }) => {
   );
 };
 
-const Staff = ({ clef, hasLines, toggleNote, overId, setOverId }) => {
+const Staff = ({
+  activeAcc,
+  clef,
+  hasLines,
+  toggleNote,
+  overId,
+  setOverId,
+}) => {
   return (
     <div className={"staff"}>
       <Clef clef={clef} />
       {staffIds[clef].map((id) => (
         <StaffSlot
+          activeAcc={activeAcc}
           clef={clef}
           id={id}
           type={
