@@ -37,14 +37,15 @@ const MouseoverNote = ({ activeAcc, visible }) => {
     position: "relative",
     alignSelf: "center",
     top: "1.69rem",
-    left: "3.5rem",
-    zIndex: "-1",
+    left: "4rem",
+    zIndex: "1",
+    pointerEvents: "none",
   };
 
   return (
     <div className={"staff-glyph"} style={style}>
       {visible === true ? (
-        <NoteheadIcon fillColor="gray" scale={0.005} />
+        <NoteheadIcon fillColor="gray" scale={0.003} />
       ) : (
         <></>
       )}
