@@ -55,14 +55,17 @@
 .staff-line-unit {
   background-color: black;
   height: 3px;
+  display: flex;
 }
 
 .staff-space-unit {
   height: 2px;
+  display: flex;
 }
 
 .staff-ledger-line-unit {
   height: 3px;
+  display: flex;
 }
 
 .staff-slot:hover {

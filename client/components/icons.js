@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 // Glyphs based on the Bravura music font by Daniel Spreadbury
 
-const NoteheadIcon = ({ fillColor }) => {
+const NoteheadIcon = ({ fillColor, scale }) => {
   return (
     <svg viewBox={[0, 0, 20, 20]} vectorEffect={"non-scaling-stroke"}>
       <path
@@ -14,7 +14,7 @@ const NoteheadIcon = ({ fillColor }) => {
            c 57,0 97,-32 97,-83
            c 0,-85 -109,-167 -198,-167
            z"
-        transform={"matrix(1 0 0 -1 0 8) scale(0.05)"}
+        transform={`matrix(1 0 0 -1 0 8) scale(${scale ? scale : 0.05})`}
       />
     </svg>
   );
@@ -22,6 +22,7 @@ const NoteheadIcon = ({ fillColor }) => {
 
 NoteheadIcon.propTypes = {
   fillColor: PropTypes.string,
+  scale: PropTypes.number,
 };
 
 const Treble = () => (

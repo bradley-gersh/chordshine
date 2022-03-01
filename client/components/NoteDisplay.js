@@ -32,6 +32,31 @@ Notehead.propTypes = {
   fillColor: PropTypes.string,
 };
 
+const MouseoverNote = ({ activeAcc, visible }) => {
+  const style = {
+    position: "relative",
+    alignSelf: "center",
+    top: "1.69rem",
+    left: "3.5rem",
+    zIndex: "-1",
+  };
+
+  return (
+    <div className={"staff-glyph"} style={style}>
+      {visible === true ? (
+        <NoteheadIcon fillColor="gray" scale={0.005} />
+      ) : (
+        <></>
+      )}
+    </div>
+  );
+};
+
+MouseoverNote.propTypes = {
+  activeAcc: PropTypes.number,
+  visible: PropTypes.bool,
+};
+
 const Accidental = ({ type, row, col, alt, fillColor }) => {
   const style = {
     position: "relative",
@@ -102,4 +127,4 @@ NoteDisplay.propTypes = {
   note: PropTypes.object,
 };
 
-export default NoteDisplay;
+export { NoteDisplay, MouseoverNote };

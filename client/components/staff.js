@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import { NoteheadIcon, Treble, Bass } from "./Icons";
+import { Treble, Bass } from "./Icons";
+import { MouseoverNote } from "./NoteDisplay";
 import NoteColumn from "./NoteColumn";
 import Note from "./Note";
 
@@ -40,15 +41,6 @@ const staffIds = {
 };
 
 // Staff components
-
-const MouseoverNote = ({ activeAcc, visible }) => (
-  <div>{visible === true ? <NoteheadIcon fillColor="gray" /> : <></>}</div>
-);
-
-MouseoverNote.propTypes = {
-  activeAcc: PropTypes.number,
-  visible: PropTypes.bool,
-};
 
 const StaffLineUnit = ({ id, overId, activeAcc }) => {
   if (id === overId) {
