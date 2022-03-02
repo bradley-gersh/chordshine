@@ -56,27 +56,30 @@
   background-color: black;
   height: 3px;
   display: flex;
+  position: relative;
 }
 
 .staff-space-unit {
   height: 2px;
   display: flex;
+  position: relative;
 }
 
 .staff-ledger-line-unit {
   height: 3px;
   display: flex;
+  position: relative;
 }
 
 .staff-slot:hover {
   background-color: rgba(0, 139, 139, 0.3);
 }
 
-.staff-ledger-line-unit.visible {
+.ledger-line-mouseover.visible {
   width: 1.5rem;
   background-color: gray;
   position: relative;
-  left: 50%;
+  left: 4.4rem;
   top: 1.5px;
   transform: translate(-50%, -50%);
 }

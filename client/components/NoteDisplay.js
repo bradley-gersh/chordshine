@@ -34,9 +34,8 @@ Notehead.propTypes = {
 
 const MouseoverNote = ({ activeAcc, visible }) => {
   const style = {
-    position: "relative",
-    alignSelf: "center",
-    top: "1.69rem",
+    position: "absolute",
+    top: "-4.3rem",
     left: "4rem",
     zIndex: "1",
     pointerEvents: "none",
@@ -45,7 +44,7 @@ const MouseoverNote = ({ activeAcc, visible }) => {
   return (
     <div className={"staff-glyph"} style={style}>
       {visible === true ? (
-        <NoteheadIcon fillColor="gray" scale={0.003} />
+        <NoteheadIcon fillColor="gray" scale={0.005} />
       ) : (
         <></>
       )}

@@ -77,17 +77,19 @@ StaffSpaceUnit.propTypes = {
 };
 
 const StaffLedgerLineUnit = ({ id, overId, activeAcc }) => (
-  <div
-    className={
-      "staff-ledger-line-unit" +
-      (id % 2 === 0 &&
-      ((id === 0 && overId === 0) ||
-        (id > 0 && overId >= id) ||
-        (id < 0 && overId <= id))
-        ? " visible"
-        : "")
-    }
-  >
+  <div className={"staff-ledger-line-unit"}>
+    <div className="ledger-line-active"></div>
+    <div
+      className={
+        "ledger-line-mouseover" +
+        (id % 2 === 0 &&
+        ((id === 0 && overId === 0) ||
+          (id > 0 && overId >= id) ||
+          (id < 0 && overId <= id))
+          ? " visible"
+          : "")
+      }
+    ></div>
     <MouseoverNote acc={activeAcc} visible={id === overId} />
   </div>
 );
