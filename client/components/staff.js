@@ -43,9 +43,6 @@ const staffIds = {
 // Staff components
 
 const StaffLineUnit = ({ id, overId, activeAcc }) => {
-  if (id === overId) {
-    console.log(`id ${id} moused over`);
-  }
   return (
     <div className={"staff-line-unit"}>
       <MouseoverNote activeAcc={activeAcc} visible={id === overId} />
@@ -162,7 +159,7 @@ StaffSlot.propTypes = {
   clef: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   type: PropTypes.string,
-  overId: PropTypes.number.isRequired,
+  overId: PropTypes.number,
   setOverId: PropTypes.func.isRequired,
   toggleNote: PropTypes.func,
 };
@@ -218,7 +215,7 @@ Staff.propTypes = {
   clef: PropTypes.string.isRequired,
   hasLines: PropTypes.bool.isRequired,
   activeAcc: PropTypes.number.isRequired,
-  overId: PropTypes.number.isRequired,
+  overId: PropTypes.number,
   setOverId: PropTypes.func.isRequired,
   toggleNote: PropTypes.func.isRequired,
 };
@@ -228,10 +225,15 @@ Clef.propTypes = {
 };
 
 const GrandStaff = ({ toggleNote, activeAcc }) => {
-  const [overId, setOverId] = useState(0);
+  const [overId, setOverId] = useState(undefined);
 
   return (
-    <div className={"grand-staff"}>
+    <div
+      className={"grand-staff"}
+      onMouseLeave={() => {
+        setOverId(undefined);
+      }}
+    >
       {clefs.map((clefName, idx) => (
         <Staff
           key={clefName}
