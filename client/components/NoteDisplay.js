@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import { default as useInterval } from "./Interval.js";
-import { NoteheadIcon, Flat, Natural, Sharp } from "./Icons";
+import { AccidentalIcon, NoteheadIcon } from "./Icons";
 import { MIN_VOL } from "./constants";
 
 const Notehead = ({ row, col, alt, fillColor }) => {
@@ -44,7 +44,15 @@ const MouseoverNote = ({ activeAcc, visible }) => {
   return (
     <div className={"staff-glyph"} style={style}>
       {visible === true ? (
-        <NoteheadIcon fillColor="gray" scale={0.005} />
+        <>
+          <AccidentalIcon
+            className="staff-glyph"
+            fillColor="gray"
+            scale={0.005}
+            type={activeAcc}
+          />
+          <NoteheadIcon fillColor="gray" scale={0.005} />
+        </>
       ) : (
         <></>
       )}
@@ -77,13 +85,11 @@ const Accidental = ({ type, row, col, alt, fillColor }) => {
 
   return (
     <div style={style}>
-      {type === -1 ? (
-        <Flat className="staff-glyph" fillColor={fillColor} />
-      ) : type === 1 ? (
-        <Sharp className="staff-glyph" fillColor={fillColor} />
-      ) : (
-        <Natural className="staff-glyph" fillColor={fillColor} />
-      )}
+      <AccidentalIcon
+        className={"staff-glyph"}
+        fillColor={fillColor}
+        type={type}
+      />
     </div>
   );
 };

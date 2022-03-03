@@ -25,6 +25,39 @@ NoteheadIcon.propTypes = {
   scale: PropTypes.number,
 };
 
+const AccidentalIcon = ({ className, fillColor, scale, type }) => {
+  return (
+    <>
+      {type === -1 ? (
+        <Flat
+          className={className}
+          scale={scale ? scale : 0.05}
+          fillColor={fillColor}
+        />
+      ) : type === 1 ? (
+        <Sharp
+          className={className}
+          scale={scale ? scale : 0.05}
+          fillColor={fillColor}
+        />
+      ) : (
+        <Natural
+          className={className}
+          scale={scale ? scale : 0.05}
+          fillColor={fillColor}
+        />
+      )}
+    </>
+  );
+};
+
+AccidentalIcon.propTypes = {
+  className: PropTypes.string,
+  fillColor: PropTypes.string,
+  scale: PropTypes.number,
+  type: PropTypes.number.isRequired,
+};
+
 const Treble = () => (
   <svg
     width={"100%"}
@@ -313,4 +346,4 @@ Flat.propTypes = {
   fillColor: PropTypes.string,
 };
 
-export { NoteheadIcon, Treble, Bass, Flat, Sharp, Natural };
+export { NoteheadIcon, AccidentalIcon, Treble, Bass, Flat, Sharp, Natural };
