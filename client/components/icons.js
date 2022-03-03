@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 // Glyphs based on the Bravura music font by Daniel Spreadbury
 
-const NoteheadIcon = ({ fillColor, scale }) => {
+const NoteheadIcon = ({ fillColor, scale, xShift, yShift }) => {
   return (
     <svg viewBox={[0, 0, 20, 20]} vectorEffect={"non-scaling-stroke"}>
       <path
@@ -14,7 +14,9 @@ const NoteheadIcon = ({ fillColor, scale }) => {
            c 57,0 97,-32 97,-83
            c 0,-85 -109,-167 -198,-167
            z"
-        transform={`matrix(1 0 0 -1 0 8) scale(${scale ? scale : 0.05})`}
+        transform={`matrix(1 0 0 -1 ${xShift ? xShift : 0} ${
+          yShift ? yShift : 8
+        }) scale(${scale ? scale : 0.05})`}
       />
     </svg>
   );
@@ -23,29 +25,19 @@ const NoteheadIcon = ({ fillColor, scale }) => {
 NoteheadIcon.propTypes = {
   fillColor: PropTypes.string,
   scale: PropTypes.number,
+  xShift: PropTypes.number,
+  yShift: PropTypes.number,
 };
 
 const AccidentalIcon = ({ className, fillColor, scale, type }) => {
   return (
     <>
       {type === -1 ? (
-        <Flat
-          className={className}
-          scale={scale ? scale : 0.05}
-          fillColor={fillColor}
-        />
+        <Flat className={className} scale={scale} fillColor={fillColor} />
       ) : type === 1 ? (
-        <Sharp
-          className={className}
-          scale={scale ? scale : 0.05}
-          fillColor={fillColor}
-        />
+        <Sharp className={className} scale={scale} fillColor={fillColor} />
       ) : (
-        <Natural
-          className={className}
-          scale={scale ? scale : 0.05}
-          fillColor={fillColor}
-        />
+        <Natural className={className} scale={scale} fillColor={fillColor} />
       )}
     </>
   );
@@ -55,7 +47,7 @@ AccidentalIcon.propTypes = {
   className: PropTypes.string,
   fillColor: PropTypes.string,
   scale: PropTypes.number,
-  type: PropTypes.number.isRequired,
+  type: PropTypes.number,
 };
 
 const Treble = () => (
@@ -174,7 +166,7 @@ const Bass = () => (
   </svg>
 );
 
-const Flat = ({ className, fillColor }) => (
+const Flat = ({ className, fillColor, scale }) => (
   <svg className={className} height="40" width="20">
     <path
       fill={fillColor}
@@ -203,15 +195,15 @@ const Flat = ({ className, fillColor }) => (
          c 0,-40 3,-100 3,-100
          z"
       transform={
-        className === "accidental-staff"
-          ? "matrix(1 0 0 -1 5 24) scale(0.04)"
-          : "matrix(1 0 0 -1 5 25) scale(0.05)"
+        className === "accidental-on-button"
+          ? "matrix(1 0 0 -1 5 25) scale(0.05)"
+          : `matrix(1 0 0 -1 5 22) scale(${scale ? scale : 0.05})`
       }
     />
   </svg>
 );
 
-const Natural = ({ className, fillColor }) => (
+const Natural = ({ className, fillColor, scale }) => (
   <svg className={className} height="40" width="20">
     <path
       fill={fillColor}
@@ -240,13 +232,13 @@ const Natural = ({ className, fillColor }) => (
       transform={
         className === "accidental-staff"
           ? "matrix(1 0 0 -1 5 22) scale(0.04)"
-          : "matrix(1 0 0 -1 5 22) scale(0.05)"
+          : `matrix(1 0 0 -1 5 22) scale(${scale ? scale : 0.05})`
       }
     />
   </svg>
 );
 
-const Sharp = ({ className, fillColor }) => (
+const Sharp = ({ className, fillColor, scale }) => (
   <svg className={className} height="40" width="20">
     <path
       fill={fillColor}
@@ -325,7 +317,7 @@ const Sharp = ({ className, fillColor }) => (
       transform={
         className === "accidental-staff"
           ? "matrix(1 0 0 -1 5 22) scale(0.04)"
-          : "matrix(1 0 0 -1 5 22) scale(0.05)"
+          : `matrix(1 0 0 -1 5 22) scale(${scale ? scale : 0.05})`
       }
     />
   </svg>
@@ -334,16 +326,19 @@ const Sharp = ({ className, fillColor }) => (
 Sharp.propTypes = {
   className: PropTypes.string,
   fillColor: PropTypes.string,
+  scale: PropTypes.number,
 };
 
 Natural.propTypes = {
   className: PropTypes.string,
   fillColor: PropTypes.string,
+  scale: PropTypes.number,
 };
 
 Flat.propTypes = {
   className: PropTypes.string,
   fillColor: PropTypes.string,
+  scale: PropTypes.number,
 };
 
 export { NoteheadIcon, AccidentalIcon, Treble, Bass, Flat, Sharp, Natural };

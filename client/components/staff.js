@@ -60,7 +60,7 @@ const StaffSpaceUnit = ({ id, overId, activeAcc }) => {
   return (
     <div className={"staff-space-unit"}>
       <MouseoverNote
-        acc={activeAcc}
+        activeAcc={activeAcc}
         visible={id !== undefined && id === overId}
       />
     </div>
@@ -87,7 +87,7 @@ const StaffLedgerLineUnit = ({ id, overId, activeAcc }) => (
           : "")
       }
     ></div>
-    <MouseoverNote acc={activeAcc} visible={id === overId} />
+    <MouseoverNote activeAcc={activeAcc} visible={id === overId} />
   </div>
 );
 
