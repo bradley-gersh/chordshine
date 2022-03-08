@@ -3,7 +3,15 @@ import PropTypes from "prop-types";
 
 import { Sharp, Natural, Flat } from "./Icons";
 
-const Toolbar = ({ activeAcc, setActiveAcc, clearNoteList }) => {
+const Toolbar = ({
+  activeAcc,
+  setActiveAcc,
+  clearNoteList,
+  changeTime,
+  setChangeTime,
+  rampTime,
+  setRampTime,
+}) => {
   return (
     <div className={"toolbar"}>
       <div className={"toolbar-row"}>
@@ -27,8 +35,11 @@ const Toolbar = ({ activeAcc, setActiveAcc, clearNoteList }) => {
         <ClearButton clearNoteList={clearNoteList} />
       </div>
       <div>
-        <RampTimeSlider />
-        <FlickerRateSlider />
+        <RampTimeSlider rampTime={rampTime} setRampTime={setRampTime} />
+        <FlickerRateSlider
+          changeTime={changeTime}
+          setChangeTime={setChangeTime}
+        />
       </div>
     </div>
   );
@@ -38,6 +49,10 @@ Toolbar.propTypes = {
   activeAcc: PropTypes.number.isRequired,
   setActiveAcc: PropTypes.func.isRequired,
   clearNoteList: PropTypes.func.isRequired,
+  rampTime: PropTypes.number.isRequired,
+  setRampTime: PropTypes.func.isRequired,
+  changeTime: PropTypes.number.isRequired,
+  setChangeTime: PropTypes.func.isRequired,
 };
 
 const activeAccToIcon = (activeAcc) => {
@@ -104,18 +119,44 @@ ClearButton.propTypes = {
   clearNoteList: PropTypes.func,
 };
 
-const RampTimeSlider = () => (
+const RampTimeSlider = ({ rampTime, setRampTime }) => (
   <div>
-    <input type="range"></input>
+    <input
+      type="range"
+      min={-1000}
+      max={-1}
+      value={-rampTime}
+      onChange={(e) => {
+        setRampTime(-e.target.valueAsNumber);
+      }}
+    ></input>
     <label>Abruptness</label>
   </div>
 );
 
-const FlickerRateSlider = () => (
+RampTimeSlider.propTypes = {
+  rampTime: PropTypes.number.isRequired,
+  setRampTime: PropTypes.func.isRequired,
+};
+
+const FlickerRateSlider = ({ changeTime, setChangeTime }) => (
   <div>
-    <input type="range"></input>
+    <input
+      type="range"
+      min={-1000}
+      max={-1}
+      value={-changeTime}
+      onChange={(e) => {
+        setChangeTime(-e.target.valueAsNumber);
+      }}
+    ></input>
     <label>Rate</label>
   </div>
 );
+
+FlickerRateSlider.propTypes = {
+  changeTime: PropTypes.number.isRequired,
+  setChangeTime: PropTypes.func.isRequired,
+};
 
 export default Toolbar;

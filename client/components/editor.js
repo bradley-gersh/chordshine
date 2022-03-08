@@ -9,6 +9,8 @@ const Editor = ({ synth }) => {
   const [noteList, setNoteList] = useState([]);
   const [noteGrid, setNoteGrid] = useState({});
   const [activeAcc, setActiveAcc] = useState(0);
+  const [rampTime, setRampTime] = useState(400);
+  const [changeTime, setChangeTime] = useState(400);
 
   const clearNoteList = () => {
     setNoteList([]);
@@ -21,11 +23,11 @@ const Editor = ({ synth }) => {
       synth._activeVoices.forEach((voice) => {
         voice.voice.volume.rampTo(
           Math.random() * Math.abs(MIN_VOL) + MIN_VOL,
-          RAMP_TIME_SEC
+          rampTime / 1000
         );
       });
     }
-  }, CHANGE_TIME_MSEC);
+  }, changeTime);
 
   const toggleNote = (noteStr) => {
     const newNote = new Note(noteStr, activeAcc);
@@ -87,6 +89,10 @@ const Editor = ({ synth }) => {
         activeAcc={activeAcc}
         setActiveAcc={setActiveAcc}
         clearNoteList={clearNoteList}
+        rampTime={rampTime}
+        changeTime={changeTime}
+        setChangeTime={setChangeTime}
+        setRampTime={setRampTime}
       />
     </div>
   );
