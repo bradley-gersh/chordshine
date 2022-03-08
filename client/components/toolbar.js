@@ -26,6 +26,10 @@ const Toolbar = ({ activeAcc, setActiveAcc, clearNoteList }) => {
       <div className={"toolbar-row"}>
         <ClearButton clearNoteList={clearNoteList} />
       </div>
+      <div>
+        <RampTimeSlider />
+        <FlickerRateSlider />
+      </div>
     </div>
   );
 };
@@ -99,5 +103,19 @@ const ClearButton = ({ clearNoteList }) => {
 ClearButton.propTypes = {
   clearNoteList: PropTypes.func,
 };
+
+const RampTimeSlider = () => (
+  <div>
+    <input type="range"></input>
+    <label>Abruptness</label>
+  </div>
+);
+
+const FlickerRateSlider = () => (
+  <div>
+    <input type="range"></input>
+    <label>Rate</label>
+  </div>
+);
 
 export default Toolbar;
