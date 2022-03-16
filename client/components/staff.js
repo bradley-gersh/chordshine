@@ -254,15 +254,20 @@ GrandStaff.propTypes = {
   activeAcc: PropTypes.number.isRequired,
 };
 
-const ClickableGrandStaff = ({ noteList, toggleNote, activeAcc }) => (
+const ClickableGrandStaff = ({ noteList, toggleNote, activeAcc, noteGrid }) => (
   <div className={"clickable-staff"}>
-    <NoteColumn noteList={noteList} toggleNote={toggleNote} />
+    <NoteColumn
+      noteList={noteList}
+      toggleNote={toggleNote}
+      noteGrid={noteGrid}
+    />
     <GrandStaff toggleNote={toggleNote} activeAcc={activeAcc} />
   </div>
 );
 
 ClickableGrandStaff.propTypes = {
   noteList: PropTypes.array.isRequired,
+  noteGrid: PropTypes.object.isRequired,
   toggleNote: PropTypes.func.isRequired,
   activeAcc: PropTypes.number.isRequired,
   // synth: PropTypes.object,
