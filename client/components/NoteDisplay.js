@@ -36,7 +36,7 @@ const MouseoverNote = ({ activeAcc, visible }) => {
   const style = {
     position: "absolute",
     display: "flex",
-    top: "-1.3rem", // -4.5
+    top: "-1.255rem", // -4.5
     left: "3rem",
     zIndex: "1",
     width: "5rem",

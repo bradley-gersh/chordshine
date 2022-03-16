@@ -9,7 +9,9 @@ const noteToGrid = (note, synth /*, noteList, noteGrid, toggleNote*/) => {
   // to add to the NoteColumn.
   // Stretch goal: Handle clusters nicely
 
+  // 1. Find how many notes share the same diatonic line.
   // const sameDia = noteList.filter((note) => (note[0] === noteStr[0]) && );
+  // 2. Checks:
   // if a row has two pitches already, do not accept a third.
   // if a row has two pitches, place them in slots 0 and 2.
   // if a row slot has one pitch, place it in slot 1.
