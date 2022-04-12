@@ -28,12 +28,17 @@ const Main = () => {
 
   return (
     <div className={"main"}>
+      <h1>Chordshine.</h1>
       <Editor synth={synth} />
       {modalVisible ? (
         <SplashModal setModalVisible={setModalVisible} setToneJs={setToneJs} />
       ) : (
         <></>
       )}
+      <span className={"attribution"}>
+        Brad Gersh, 2021–22.{" "}
+        <a href="https://github.com/bradley-gersh/chordbuild">Source.</a>
+      </span>
     </div>
   );
 };

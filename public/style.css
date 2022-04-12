@@ -1,5 +1,6 @@
 html {
   background-color: rgba(0, 70, 70, 1);
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .main {
@@ -8,8 +9,25 @@ html {
 }
 
 .editor {
-  background-color: white;
+  background-color: rgba(220, 220, 220, 1);
   border-radius: 50px;
+}
+
+h1 {
+  align-self: center;
+  margin-top: 2rem;
+  color: silver;
+}
+
+a {
+  color: silver;
+}
+
+.attribution {
+  position: fixed;
+  bottom: 1rem;
+  color: silver;
+  font-style: italic;
 }
 
 .splash-modal {
@@ -40,7 +58,7 @@ html {
   border-width: 0.2rem;
   width: 15rem;
   padding: 2rem;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
 }
 
 .grand-staff {
@@ -103,7 +121,7 @@ html {
     12px repeat(4, 3px 11px) repeat(5, 3px 10px) 4px 11px
     repeat(4, 3px 10px) repeat(5, 3px 11px) 3px;
   position: absolute;
-  top: 4.5rem;
+  top: 8.7rem;
   left: 50%;
   transform: translate(-50%, 0%);
   z-index: 1;
@@ -111,7 +129,7 @@ html {
 
 .clear-button {
   margin: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.2rem;
   width: 3rem;
   height: 2rem;
   border-radius: 0.8rem;
@@ -120,7 +138,6 @@ html {
 }
 
 label {
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color:rgba(20, 10, 50, 0.8);
 }
 
