@@ -18,6 +18,9 @@ const Editor = ({ synth }) => {
   const clearNoteList = () => {
     setNoteList([]);
     setNoteGrid({});
+    setMiddleC(false);
+    setHighestLine(Number.NEGATIVE_INFINITY);
+    setLowestLine(Number.POSITIVE_INFINITY);
     synth.releaseAll();
   };
 
