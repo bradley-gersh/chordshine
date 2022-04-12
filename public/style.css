@@ -1,5 +1,5 @@
 html {
-  background-color: rgba(0, 139, 139, 1);
+  background-color: rgba(0, 70, 70, 1);
 }
 
 .main {
@@ -111,11 +111,17 @@ html {
 
 .clear-button {
   margin: 2rem;
+  margin-bottom: 1rem;
   width: 3rem;
   height: 2rem;
   border-radius: 0.8rem;
   color: lightcyan;
   background-color: darkcyan;
+}
+
+label {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color:rgba(20, 10, 50, 0.8);
 }
 
 .accidental-button {
@@ -131,6 +137,24 @@ html {
 
 .accidental-on-button {
   fill: lightcyan;
+}
+
+.slider {
+  height: 1rem;
+  border-radius: 1rem;
+}
+
+.sliders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.labeled-slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .toolbar {

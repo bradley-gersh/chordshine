@@ -31,15 +31,15 @@ const Toolbar = ({
           setActiveAcc={setActiveAcc}
         />
       </div>
-      <div className={"toolbar-row"}>
-        <ClearButton clearNoteList={clearNoteList} />
-      </div>
-      <div>
+      <div className={"sliders"}>
         <RampTimeSlider rampTime={rampTime} setRampTime={setRampTime} />
         <FlickerRateSlider
           changeTime={changeTime}
           setChangeTime={setChangeTime}
         />
+      </div>
+      <div className={"toolbar-row"}>
+        <ClearButton clearNoteList={clearNoteList} />
       </div>
     </div>
   );
@@ -120,8 +120,10 @@ ClearButton.propTypes = {
 };
 
 const RampTimeSlider = ({ rampTime, setRampTime }) => (
-  <div>
+  <div className="labeled-slider">
+    <label>Abruptness</label>
     <input
+      className="slider"
       type="range"
       min={-1000}
       max={-50}
@@ -130,7 +132,6 @@ const RampTimeSlider = ({ rampTime, setRampTime }) => (
         setRampTime(-e.target.valueAsNumber);
       }}
     ></input>
-    <label>Abruptness</label>
   </div>
 );
 
@@ -140,8 +141,10 @@ RampTimeSlider.propTypes = {
 };
 
 const FlickerRateSlider = ({ changeTime, setChangeTime }) => (
-  <div>
+  <div className="labeled-slider">
+    <label>Rate</label>
     <input
+      className="slider"
       type="range"
       min={-5000}
       max={-50}
@@ -150,7 +153,6 @@ const FlickerRateSlider = ({ changeTime, setChangeTime }) => (
         setChangeTime(-e.target.valueAsNumber);
       }}
     ></input>
-    <label>Rate</label>
   </div>
 );
 
