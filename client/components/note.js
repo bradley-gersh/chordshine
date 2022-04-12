@@ -11,6 +11,7 @@ export default class Note {
     this.row = toNoteRow(this.diaPc, this.octave);
     this.col = 2;
     this.alt = false;
+    this.showAcc = Math.abs(accidental) > 0;
   }
 }
 

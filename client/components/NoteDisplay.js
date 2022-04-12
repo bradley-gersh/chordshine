@@ -109,13 +109,17 @@ const NoteDisplay = ({ note }) => {
 
   return (
     <>
-      <Accidental
-        type={note.accidental}
-        row={note.row}
-        col={note.col}
-        alt={note.alt}
-        fillColor={`rgb(${color / 4}, ${color}, ${color})`}
-      />
+      {note.showAcc ? (
+        <Accidental
+          type={note.accidental}
+          row={note.row}
+          col={note.col}
+          alt={note.alt}
+          fillColor={`rgb(${color / 4}, ${color}, ${color})`}
+        />
+      ) : (
+        <></>
+      )}
       <Notehead
         row={note.row}
         col={note.col}

@@ -30,7 +30,9 @@ const noteToGrid = (note, synth, noteList, noteGrid /*, toggleNote*/) => {
   // 2. Checks:
   // if a row has two pitches already, do not accept a third.
   // if a row has two pitches, place them in slots 0 and 2.
-  if (sameLine.length === 1 && note.col !== 2) {
+  if (sameLine.length === 0 && note.accidental === "") {
+    note.showAcc = false;
+  } else if (sameLine.length === 1 && note.col !== 2) {
     note.col = 2;
     // update noteGrid using setNoteGrid here
   } else if (sameLine.length > 1) {
