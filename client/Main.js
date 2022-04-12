@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Editor, SplashModal } from "./components/index";
+import { Editor, SplashModal } from "./components/index.js";
 
 const Main = () => {
   const [tonejs, setToneJs] = useState(undefined);
