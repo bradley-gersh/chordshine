@@ -4,7 +4,7 @@ const server = require("./server.js");
 const init = async () => {
   try {
     server.listen(PORT, () => {
-      console.log(`Server listening on port ${PORT}/`);
+      console.log(`Server listening on port ${PORT}`);
     });
   } catch (err) {
     console.log(`[ERROR] Error in launching server:`, err);
