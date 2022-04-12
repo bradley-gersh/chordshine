@@ -5,7 +5,7 @@ const SplashModal = ({ setModalVisible, setToneJs }) => {
   return (
     <div className={"splash-modal"}>
       <div className={"text"}>
-        <p>This toy can help you explore the subsets of a sonority.</p>
+        <p>This little app explores the subsets of a sonority.</p>
         <p>Click the staff to add pitches.</p>
         <p>
           Use the sliders to change the smoothness and speed of the shimmer.
