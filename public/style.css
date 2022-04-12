@@ -1,6 +1,15 @@
+html {
+  background-color: rgba(0, 139, 139, 1);
+}
+
 .main {
   display: flex;
   flex-direction: column;
+}
+
+.editor {
+  background-color: white;
+  border-radius: 50px;
 }
 
 .splash-modal {
@@ -98,6 +107,15 @@
   left: 50%;
   transform: translate(-50%, 0%);
   z-index: 1;
+}
+
+.clear-button {
+  margin: 2rem;
+  width: 3rem;
+  height: 2rem;
+  border-radius: 0.8rem;
+  color: lightcyan;
+  background-color: darkcyan;
 }
 
 .accidental-button {

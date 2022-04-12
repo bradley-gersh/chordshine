@@ -124,7 +124,7 @@ const RampTimeSlider = ({ rampTime, setRampTime }) => (
     <input
       type="range"
       min={-1000}
-      max={-1}
+      max={-50}
       value={-rampTime}
       onChange={(e) => {
         setRampTime(-e.target.valueAsNumber);
@@ -144,7 +144,7 @@ const FlickerRateSlider = ({ changeTime, setChangeTime }) => (
     <input
       type="range"
       min={-5000}
-      max={-1}
+      max={-50}
       value={-changeTime}
       onChange={(e) => {
         setChangeTime(-e.target.valueAsNumber);
