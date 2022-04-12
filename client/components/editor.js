@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import useInterval from "./Interval";
-import { ClickableGrandStaff, Note, Toolbar } from "./index";
-import { MIN_VOL, RAMP_TIME_SEC, CHANGE_TIME_MSEC } from "./constants";
+import useInterval from "./Interval.js";
+import { ClickableGrandStaff, Note, Toolbar } from "./index.js";
+import { MIN_VOL, RAMP_TIME_SEC, CHANGE_TIME_MSEC } from "./constants.js";
 
 const Editor = ({ synth }) => {
   const [noteList, setNoteList] = useState([]);

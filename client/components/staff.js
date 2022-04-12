@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import { Treble, Bass } from "./Icons";
-import { MouseoverNote } from "./NoteDisplay";
-import NoteColumn from "./NoteColumn";
-import Note from "./Note";
+import { Treble, Bass } from "./Icons.js";
+import { MouseoverNote } from "./NoteDisplay.js";
+import NoteColumn from "./NoteColumn.js";
+import Note from "./Note.js";
 
 // Hardcoded staff data
 
