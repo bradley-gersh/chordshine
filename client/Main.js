@@ -28,7 +28,7 @@ const Main = () => {
 
   return (
     <div className={"main"}>
-      <h1>Chordshine.</h1>
+      <h1>chordshine</h1>
       <Editor synth={synth} />
       {modalVisible ? (
         <SplashModal setModalVisible={setModalVisible} setToneJs={setToneJs} />

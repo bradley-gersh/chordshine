@@ -17,6 +17,8 @@ h1 {
   align-self: center;
   margin-top: 2rem;
   color: rgba(220, 220, 220, 1);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style:italic;
 }
 
 a {
@@ -27,6 +29,7 @@ a {
   position: fixed;
   bottom: 1rem;
   color: rgba(220, 220, 220, 1);
+  font-family: Georgia, 'Times New Roman', Times, serif;
   font-style: italic;
 }
 
@@ -128,7 +131,7 @@ a {
     12px repeat(4, 3px 11px) repeat(5, 3px 10px) 4px 11px
     repeat(4, 3px 10px) repeat(5, 3px 11px) 3px;
   position: absolute;
-  top: 8.7rem;
+  top: 8.6rem;
   left: 50%;
   transform: translate(-50%, 0%);
   z-index: 1;
