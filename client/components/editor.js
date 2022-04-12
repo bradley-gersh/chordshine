@@ -8,6 +8,9 @@ import { MIN_VOL, RAMP_TIME_SEC, CHANGE_TIME_MSEC } from "./constants";
 const Editor = ({ synth }) => {
   const [noteList, setNoteList] = useState([]);
   const [noteGrid, setNoteGrid] = useState({});
+  const [highestLine, setHighestLine] = useState(Number.NEGATIVE_INFINITY);
+  const [lowestLine, setLowestLine] = useState(Number.POSITIVE_INFINITY);
+  const [middleC, setMiddleC] = useState(false);
   const [activeAcc, setActiveAcc] = useState(0);
   const [rampTime, setRampTime] = useState(400);
   const [changeTime, setChangeTime] = useState(400);
@@ -73,9 +76,31 @@ const Editor = ({ synth }) => {
         newNoteGrid[newNote.row] = [newNote.col];
       }
     }
+    const C4row = -21;
+    const lowestRow =
+      -1 *
+      (newNoteList.reduce(
+        (max, note) => (note.row > max ? note.row : max),
+        Number.NEGATIVE_INFINITY
+      ) -
+        C4row);
+
+    const highestRow =
+      -1 *
+      (newNoteList.reduce(
+        (min, note) => (note.row < min ? note.row : min),
+        Number.POSITIVE_INFINITY
+      ) -
+        C4row);
+
+    const middleCPresent =
+      newNoteList.filter((note) => note.row === C4row).length > 0;
 
     setNoteList(newNoteList);
     setNoteGrid(newNoteGrid);
+    setMiddleC(middleCPresent);
+    setHighestLine(highestRow);
+    setLowestLine(lowestRow);
   };
 
   return (
@@ -85,6 +110,9 @@ const Editor = ({ synth }) => {
         toggleNote={toggleNote}
         activeAcc={activeAcc}
         noteGrid={noteGrid}
+        highestLine={highestLine}
+        lowestLine={lowestLine}
+        middleC={middleC}
       />
       <Toolbar
         activeAcc={activeAcc}

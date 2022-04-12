@@ -73,9 +73,26 @@ StaffSpaceUnit.propTypes = {
   activeAcc: PropTypes.number,
 };
 
-const StaffLedgerLineUnit = ({ id, overId, activeAcc }) => (
+const StaffLedgerLineUnit = ({
+  id,
+  overId,
+  activeAcc,
+  highestLine,
+  lowestLine,
+  middleC,
+}) => (
   <div className={"staff-ledger-line-unit"}>
-    <div className="ledger-line-active"></div>
+    <div
+      className={
+        "ledger-line" +
+        (id % 2 === 0 &&
+        ((id === 0 && middleC === true) ||
+          (id > 0 && highestLine >= id) ||
+          (id < 0 && lowestLine <= id))
+          ? " visible"
+          : "")
+      }
+    ></div>
     <div
       className={
         "ledger-line-mouseover" +
@@ -95,6 +112,9 @@ StaffLedgerLineUnit.propTypes = {
   id: PropTypes.number,
   overId: PropTypes.number,
   activeAcc: PropTypes.number,
+  highestLine: PropTypes.number,
+  lowestLine: PropTypes.number,
+  middleC: PropTypes.bool,
 };
 
 const StaffSlot = ({
@@ -105,6 +125,9 @@ const StaffSlot = ({
   toggleNote,
   overId,
   setOverId,
+  highestLine,
+  lowestLine,
+  middleC,
 }) => {
   const isNote = clef != undefined && id != undefined ? true : false;
   const note = !isNote
@@ -139,7 +162,14 @@ const StaffSlot = ({
       ) : type === "staff-ledger-line" ? (
         <>
           <StaffSpaceUnit />
-          <StaffLedgerLineUnit activeAcc={activeAcc} id={id} overId={overId} />
+          <StaffLedgerLineUnit
+            activeAcc={activeAcc}
+            id={id}
+            overId={overId}
+            highestLine={highestLine}
+            lowestLine={lowestLine}
+            middleC={middleC}
+          />
           <StaffSpaceUnit />
         </>
       ) : (
@@ -162,6 +192,9 @@ StaffSlot.propTypes = {
   overId: PropTypes.number,
   setOverId: PropTypes.func.isRequired,
   toggleNote: PropTypes.func,
+  highestLine: PropTypes.number,
+  lowestLine: PropTypes.number,
+  middleC: PropTypes.bool,
 };
 
 const Clef = ({ clef }) => {
@@ -185,6 +218,9 @@ const Staff = ({
   toggleNote,
   overId,
   setOverId,
+  highestLine,
+  lowestLine,
+  middleC,
 }) => {
   return (
     <div className={"staff"}>
@@ -205,6 +241,9 @@ const Staff = ({
           overId={overId}
           setOverId={setOverId}
           key={id}
+          highestLine={highestLine}
+          lowestLine={lowestLine}
+          middleC={middleC}
         />
       ))}
     </div>
@@ -218,13 +257,22 @@ Staff.propTypes = {
   overId: PropTypes.number,
   setOverId: PropTypes.func.isRequired,
   toggleNote: PropTypes.func.isRequired,
+  highestLine: PropTypes.number,
+  lowestLine: PropTypes.number,
+  middleC: PropTypes.bool,
 };
 
 Clef.propTypes = {
   clef: PropTypes.string.isRequired,
 };
 
-const GrandStaff = ({ toggleNote, activeAcc }) => {
+const GrandStaff = ({
+  toggleNote,
+  activeAcc,
+  highestLine,
+  lowestLine,
+  middleC,
+}) => {
   const [overId, setOverId] = useState(undefined);
 
   return (
@@ -243,6 +291,9 @@ const GrandStaff = ({ toggleNote, activeAcc }) => {
           activeAcc={activeAcc}
           overId={overId}
           setOverId={setOverId}
+          highestLine={highestLine}
+          lowestLine={lowestLine}
+          middleC={middleC}
         />
       ))}
     </div>
@@ -252,16 +303,33 @@ const GrandStaff = ({ toggleNote, activeAcc }) => {
 GrandStaff.propTypes = {
   toggleNote: PropTypes.func,
   activeAcc: PropTypes.number.isRequired,
+  highestLine: PropTypes.number,
+  lowestLine: PropTypes.number,
+  middleC: PropTypes.bool,
 };
 
-const ClickableGrandStaff = ({ noteList, toggleNote, activeAcc, noteGrid }) => (
+const ClickableGrandStaff = ({
+  noteList,
+  toggleNote,
+  activeAcc,
+  noteGrid,
+  highestLine,
+  lowestLine,
+  middleC,
+}) => (
   <div className={"clickable-staff"}>
     <NoteColumn
       noteList={noteList}
       toggleNote={toggleNote}
       noteGrid={noteGrid}
     />
-    <GrandStaff toggleNote={toggleNote} activeAcc={activeAcc} />
+    <GrandStaff
+      toggleNote={toggleNote}
+      activeAcc={activeAcc}
+      highestLine={highestLine}
+      lowestLine={lowestLine}
+      middleC={middleC}
+    />
   </div>
 );
 
@@ -270,6 +338,9 @@ ClickableGrandStaff.propTypes = {
   noteGrid: PropTypes.object.isRequired,
   toggleNote: PropTypes.func.isRequired,
   activeAcc: PropTypes.number.isRequired,
+  highestLine: PropTypes.number,
+  lowestLine: PropTypes.number,
+  middleC: PropTypes.bool,
   // synth: PropTypes.object,
 };
 

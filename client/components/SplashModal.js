@@ -5,18 +5,21 @@ const SplashModal = ({ setModalVisible, setToneJs }) => {
   return (
     <div className={"splash-modal"}>
       <div className={"text"}>
-        This modal is necessary to load the audio component.
+        <p>This toy can help you explore the subsets of a sonority.</p>
+        <p>Click the staff to add pitches.</p>
+        <p>
+          Use the sliders to change the smoothness and speed of the shimmer.
+        </p>
       </div>
       <button
         onClick={async () => {
           const tempTone = await import("tone");
           await tempTone.start();
           setToneJs(tempTone);
-          // console.log("tone started");
           setModalVisible(false);
         }}
       >
-        Click me to start!
+        Click to start
       </button>
     </div>
   );

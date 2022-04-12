@@ -146,7 +146,7 @@ const FlickerRateSlider = ({ changeTime, setChangeTime }) => (
     <input
       className="slider"
       type="range"
-      min={-5000}
+      min={-4000}
       max={-50}
       value={-changeTime}
       onChange={(e) => {

@@ -16,17 +16,17 @@ html {
 h1 {
   align-self: center;
   margin-top: 2rem;
-  color: silver;
+  color: rgba(220, 220, 220, 1);
 }
 
 a {
-  color: silver;
+  color: rgba(220, 220, 220, 1);
 }
 
 .attribution {
   position: fixed;
   bottom: 1rem;
-  color: silver;
+  color: rgba(220, 220, 220, 1);
   font-style: italic;
 }
 
@@ -48,7 +48,7 @@ a {
 }
 
 .splash-modal .text {
-  color: silver;
+  color: rgba(220, 220, 220, 1);
 }
 
 .editor {
@@ -111,6 +111,13 @@ a {
   left: 4.4rem;
   top: 1.5px;
   transform: translate(-50%, -50%);
+}
+
+.ledger-line.visible {
+  width: 1.3rem;
+  background-color: black;
+  position: relative;
+  left: 6.75rem;
 }
 
 .note-column {
