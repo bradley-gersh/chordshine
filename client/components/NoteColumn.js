@@ -21,6 +21,8 @@ const noteToGrid = (note, synth, noteList, noteGrid /*, toggleNote*/) => {
     )[0];
     if (neighborBelow.alt === false) {
       note.alt = true;
+    } else {
+      note.alt = false;
     }
   } else if (neighborBelowIndexes.length > 1) {
     console.log("WARNING: Too many lower neighbors." + neighborBelowIndexes);
@@ -32,18 +34,19 @@ const noteToGrid = (note, synth, noteList, noteGrid /*, toggleNote*/) => {
     note.col = 2;
     // update noteGrid using setNoteGrid here
   } else if (sameLine.length > 1) {
-    const sameLineNotes = noteList.filter(
-      (testNote) => testNote.row === note.row
-    );
-    sameLineNotes.sort((noteA, noteB) => noteA.accidental - noteB.accidental);
-    sameLineNotes[0].col = 1;
-    if (sameLine.length === 2) {
-      sameLineNotes[1].col = 3;
-    } else if (sameLine.length === 3) {
-      sameLineNotes[1].col = 2;
-      sameLineNotes[2].col = 3;
-    }
-    console.log(sameLineNotes);
+    // DO NOTHING
+    // const sameLineNotes = noteList.filter(
+    //   (testNote) => testNote.row === note.row
+    // );
+    // sameLineNotes.sort((noteA, noteB) => noteA.accidental - noteB.accidental);
+    // sameLineNotes[0].col = 1;
+    // if (sameLine.length === 2) {
+    //   sameLineNotes[1].col = 3;
+    // } else if (sameLine.length === 3) {
+    //   sameLineNotes[1].col = 2;
+    //   sameLineNotes[2].col = 3;
+    // }
+    // console.log(sameLineNotes);
     // update noteGrid using setNoteGrid here
   }
   // if a row slot has one pitch, place it in slot 1.

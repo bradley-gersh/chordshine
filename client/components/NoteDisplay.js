@@ -77,7 +77,7 @@ const Accidental = ({ type, row, col, alt, fillColor }) => {
   }
 
   if (alt) {
-    style["left"] = "14px";
+    style["left"] = "-40px";
   }
 
   return (
