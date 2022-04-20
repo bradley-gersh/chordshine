@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Sharp, Natural, Flat } from "./Icons.js";
+import { Sharp, Natural, Flat } from "./icons.js";
 
 const Toolbar = ({
   activeAcc,

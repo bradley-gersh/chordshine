@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import { default as useInterval } from "./Interval.js";
-import { AccidentalIcon, NoteheadIcon } from "./Icons.js";
+import { default as useInterval } from "./interval.js";
+import { AccidentalIcon, NoteheadIcon } from "./icons.js";
 import { MIN_VOL } from "./constants.js";
 
 const Notehead = ({ row, col, alt, fillColor }) => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import useInterval from "./Interval.js";
+import useInterval from "./interval.js";
 import { ClickableGrandStaff, Note, Toolbar } from "./index.js";
 import { MIN_VOL, RAMP_TIME_SEC, CHANGE_TIME_MSEC } from "./constants.js";
 

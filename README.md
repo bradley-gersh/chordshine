@@ -1,6 +1,6 @@
-# Chordbuild
+# Chordshine
 
-(Under development)
+Currently deployed; try it out [here!](http://chordshine.herokuapp.com/)
 
 This repository is the front end for a web application allowing the user to
 click on a musical staff to generate a single chord, whose sound is produced

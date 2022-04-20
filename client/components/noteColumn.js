@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 // import { Notehead } from "./Icons";
-import { NoteDisplay } from "./NoteDisplay.js";
+import { NoteDisplay } from "./noteDisplay.js";
 
 const noteToGrid = (note, synth, noteList, noteGrid /*, toggleNote*/) => {
   // given a note string, returns the component
